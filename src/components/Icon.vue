@@ -1,5 +1,5 @@
 <template>
-  <i class="iconfont" :class="mapType"></i>
+  <i class="iconfont icon-container" :class="mapType"></i>
 </template>
 
 <script>
