@@ -1,13 +1,12 @@
 <template>
-  <div>
-    <img
-      :src="imgUrl"
-      :style="{
-        width: imgSize + 'px',
-        height: imgSize + 'px',
-      }"
-    />
-  </div>
+  <img
+    class="avatar-container"
+    :src="imgUrl"
+    :style="{
+      width: imgSize + 'px',
+      height: imgSize + 'px',
+    }"
+  />
 </template>
 
 <script>
@@ -26,7 +25,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-img {
+.avatar-container {
   object-fit: cover;
   border-radius: 50%;
   transition: 0.25s ease;
