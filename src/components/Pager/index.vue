@@ -76,6 +76,7 @@ export default {
     .flex-center();
     .boder-style(6px, @lightWords);
     background-color: @white;
+    flex-shrink: 0;
     margin: 0 5px;
     padding: 0 15px;
     height: 40px;

@@ -9,7 +9,7 @@ const mapIcon = {
   arrowDown: "icon-cc-arrow-down-circle",
   arrowLeft: "icon-cc-arrow-left-circle",
   arrowRight: "icon-cc-arrow-right-circle",
-  arrowUp: "icon-github1",
+  arrowUp: "icon-cc-arrow-up-circle",
   info: "icon-xinxi",
   leaveWord: "icon-liuyan",
   email: "icon-email",
@@ -17,9 +17,10 @@ const mapIcon = {
   right: "icon-zhengque",
   home: "icon-zhuye",
   blog: "icon-boke",
+  wechat: "icon-weixin",
   warn: "icon-jinggao",
   close: "icon-daochushujufuzhi",
-  code: "icon-code",
+  code: "icon-code1",
   empty: "icon-kongkongde",
   about: "icon-guanyuwomen",
 };
@@ -40,5 +41,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "//at.alicdn.com/t/c/font_4629566_rfwcmeqs58d.css";
+@import "//at.alicdn.com/t/c/font_4629566_l3sgaf5yuxl.css";
+.iconfont {
+  font-size: inherit;
+  color: inherit;
+}
 </style>
