@@ -4,7 +4,15 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "preview-Avatar":"vue serve ./src/components/Avatar/preview.vue",
+    "preview-Icon":"vue serve ./src/components/Icon/preview.vue",
+    "preview-Pager":"vue serve ./src/components/Pager/preview.vue",
+    "preview-Empty":"vue serve ./src/components/Empty/preview.vue",
+    "preview-ImageLoader":"vue serve ./src/components/ImageLoader/preview.vue",
+    "preview-Contact":"vue serve ./src/components/SiteAside/Contact/preview.vue",
+    "preview-Menu":"vue serve ./src/components/SiteAside/Menu/preview.vue",
+    "preview-SiteAside":"vue serve ./src/components/SiteAside/preview.vue"
   },
   "dependencies": {
     "core-js": "^3.6.5",

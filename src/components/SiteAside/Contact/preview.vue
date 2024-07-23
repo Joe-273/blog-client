@@ -1,30 +1,28 @@
 <template>
   <div class="test-container">
-    <Icon :imgUrl="url" />
+    <Contact />
   </div>
 </template>
 
 <script>
 import "@/style/global.less";
-import Icon from "./";
-import url from "@/assets/404AM.png";
+
+import Contact from "./";
 export default {
   components: {
-    Icon,
-  },
-  data() {
-    return {
-      url,
-    };
+    Contact,
   },
 };
 </script>
 
 <style lang="less" scoped>
 @import "~@/style/common.less";
-
 .test-container {
-  margin-top: 100px;
-  .flex-center();
+  margin: 100px;
+  display: inline-block;
+  width: 250px;
+  .boder-style();
+  background-color: #333;
+  color: #eee;
 }
 </style>

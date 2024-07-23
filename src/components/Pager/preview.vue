@@ -1,10 +1,11 @@
 <template>
-  <div>
-    <Pager :total="total" :current="current" @pageChange="handlePageChange" />
+  <div class="test-container">
+    <Pager :total="total" :current="current" @pageChanged="handlePageChange" />
   </div>
 </template>
 
 <script>
+import "@/style/global.less";
 import Pager from "./";
 export default {
   components: {
