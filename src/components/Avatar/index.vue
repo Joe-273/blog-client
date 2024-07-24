@@ -25,13 +25,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import "~@/style/var.less";
 .avatar-container {
   object-fit: cover;
   border-radius: 50%;
+  border: 1px solid @lightWords;
   transition: 0.25s ease;
   &:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 25px @words;
   }
 }
 </style>
