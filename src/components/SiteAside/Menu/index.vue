@@ -25,7 +25,7 @@
     position: relative;
     transition: 0.25s;
     .aLink {
-      .boder-style(4px;transparent);
+      .border-style(4px;transparent);
       font-size: 18px;
       padding: 15px 0;
       .flex-center();

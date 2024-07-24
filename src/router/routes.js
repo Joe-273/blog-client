@@ -4,8 +4,6 @@ import Blog from "@/views/Blog";
 import LeaveWords from "@/views/LeaveWords";
 import Project from "@/views/Project";
 
-var i = 0;
-
 // 路由的匹配规则
 const routes = [
   {
@@ -34,5 +32,4 @@ const routes = [
     component: Project,
   },
 ];
-for (let i = 0; i < 10; i--) {}
 export default routes;

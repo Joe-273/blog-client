@@ -72,7 +72,7 @@ export default {
       .flex-center();
       .icon {
         .flex-center();
-        .boder-style(50%, @lightWords);
+        .border-style(50%, @lightWords);
         width: 36px;
         height: 36px;
         font-size: 22px;
@@ -97,7 +97,7 @@ export default {
       padding-top: 100%;
       width: 100%;
       background-color: @gray;
-      .boder-style(8px);
+      .border-style(8px);
       &::after {
         content: "";
         position: absolute;
@@ -105,7 +105,7 @@ export default {
         left: 15%;
         width: 8px;
         height: 8px;
-        .boder-style(2px, @gray);
+        .border-style(2px, @gray);
         transform: translateY(-50%) rotate(45deg);
         background-color: @gray;
       }
@@ -113,7 +113,7 @@ export default {
         .abs-center();
         width: 90%;
         object-fit: cover;
-        .boder-style(6px, @gray);
+        .border-style(6px, @gray);
       }
     }
     &:hover {

@@ -21,7 +21,7 @@ export default {
   margin: 100px;
   display: inline-block;
   width: 250px;
-  .boder-style();
+  .border-style();
   background-color: #333;
   color: #eee;
 }

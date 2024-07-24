@@ -14,7 +14,7 @@ const mapIcon = {
   leaveWord: "icon-liuyan",
   email: "icon-email",
   qq: "icon-qq",
-  right: "icon-zhengque",
+  success: "icon-zhengque",
   home: "icon-zhuye",
   blog: "icon-boke",
   wechat: "icon-weixin",

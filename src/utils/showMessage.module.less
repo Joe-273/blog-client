@@ -1,0 +1,36 @@
+@import "~@/style/common.less";
+@import "~@/style/var.less";
+.message {
+  .self-center();
+  .flex-center();
+  z-index: 999;
+  padding: 25px 15px;
+  box-shadow: 0 0 15px -5px @dark;
+  color: @white;
+  transform: translate(-50%, -50%) translateY(20px);
+  opacity: 0;
+  transition: 0.5s;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: normal;
+  span {
+    padding: 0 5px;
+    font-size: 28px;
+  }
+  &.info {
+    background-color: @primary;
+    .border-style(6px, @primary);
+  }
+  &.success {
+    background-color: @success;
+    .border-style(6px, @success);
+  }
+  &.warn {
+    background-color: @warn;
+    .border-style(6px, @warn);
+  }
+  &.error {
+    background-color: @danger;
+    .border-style(6px, @danger);
+  }
+}

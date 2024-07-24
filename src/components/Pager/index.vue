@@ -74,7 +74,7 @@ export default {
     color: @words;
     font-size: 14px;
     .flex-center();
-    .boder-style(6px, @lightWords);
+    .border-style(6px, @lightWords);
     background-color: @white;
     flex-shrink: 0;
     margin: 0 5px;
