@@ -80,6 +80,7 @@ export default {
       }
       &:hover {
         .icon {
+          transform: scale(1.15);
           border-color: @primary;
         }
       }
@@ -95,24 +96,24 @@ export default {
       top: -20px;
       padding-top: 100%;
       width: 100%;
-      background-color: @white;
+      background-color: @gray;
       .boder-style(8px);
       &::after {
         content: "";
         position: absolute;
         top: 100%;
         left: 15%;
-        width: 16px;
-        height: 16px;
-        .boder-style(2px, @white);
+        width: 8px;
+        height: 8px;
+        .boder-style(2px, @gray);
         transform: translateY(-50%) rotate(45deg);
-        background-color: @white;
+        background-color: @gray;
       }
       img {
         .abs-center();
         width: 90%;
         object-fit: cover;
-        .boder-style(6px, @white);
+        .boder-style(6px, @gray);
       }
     }
     &:hover {
@@ -124,22 +125,22 @@ export default {
   }
   .item:nth-child(1) {
     .image::after {
-      left: 9%;
+      left: 10%;
     }
   }
   .item:nth-child(2) {
     .image::after {
-      left: 34%;
+      left: 36%;
     }
   }
   .item:nth-child(3) {
     .image::after {
-      left: 59%;
+      left: 60%;
     }
   }
   .item:nth-child(4) {
     .image::after {
-      left: 83%;
+      left: 86%;
     }
   }
 }

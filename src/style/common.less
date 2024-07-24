@@ -11,8 +11,7 @@
 }
 .boder-style(@r:5px,@col:#eee,@lineWidth:1px){
   border-radius: @r;
-  border: 1px solid @col;
-  box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.5);
+  border: @lineWidth solid @col;
 }
 .hover-style(@blur:25px,@offset:-5px,@col:rgba(0, 0, 0, 0.5)){
   transition: 0.25s;
@@ -20,4 +19,11 @@
     transform: scale(1.05);
     box-shadow: 0 0 @blur @offset @col;
   }
+}
+.self-fill(@tyle:absolute){
+  position: @tyle;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
 }

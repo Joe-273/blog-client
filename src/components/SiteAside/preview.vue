@@ -17,7 +17,7 @@ export default {
 <style lang="less" scoped>
 .test-container {
   width: 250px;
-  height: 800px;
+  height: 1000px;
   margin: 0 auto;
   margin-top: 50px;
 }
