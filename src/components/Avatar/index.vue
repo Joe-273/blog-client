@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~@/style/var.less";
+@import "~@/styles/var.less";
 .avatar-container {
   object-fit: cover;
   border-radius: 50%;

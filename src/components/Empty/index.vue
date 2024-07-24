@@ -21,8 +21,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~@/style/common.less";
-@import "~@/style/var.less";
+@import "~@/styles/common.less";
+@import "~@/styles/var.less";
 .empty-container {
   color: @words;
   font-size: 60px;

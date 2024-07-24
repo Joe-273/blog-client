@@ -50,6 +50,4 @@ export default function(options = {}) {
       { once: true }
     );
   }, duration);
-
-  console.log(div);
 }

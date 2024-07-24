@@ -35,8 +35,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~@/style/var.less";
-@import "~@/style/common.less";
+@import "~@/styles/var.less";
+@import "~@/styles/common.less";
 .site-aside-container {
   height: 100%;
   padding: 5%;

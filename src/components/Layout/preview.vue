@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import "@/style/global.less";
+import "@/styles/global.less";
 import Layout from "./";
 export default {
   components: {

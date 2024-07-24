@@ -64,8 +64,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~@/style/var.less";
-@import "~@/style/common.less";
+@import "~@/styles/var.less";
+@import "~@/styles/common.less";
 .pager-container {
   height: 80px;
   .flex-center();

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import "@/style/global.less";
+import "@/styles/global.less";
 import Icon, { types } from "./";
 export default {
   components: {

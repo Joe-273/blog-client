@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import "@/style/global.less";
+import "@/styles/global.less";
 import Menu from "./";
 export default {
   components: {

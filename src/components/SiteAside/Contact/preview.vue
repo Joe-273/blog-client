@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import "@/style/global.less";
+import "@/styles/global.less";
 
 import Contact from "./";
 export default {
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~@/style/common.less";
+@import "~@/styles/common.less";
 .test-container {
   margin: 100px;
   display: inline-block;

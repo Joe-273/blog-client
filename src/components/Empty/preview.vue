@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import "@/style/global.less";
+import "@/styles/global.less";
 import Empty from "./";
 export default {
   components: {

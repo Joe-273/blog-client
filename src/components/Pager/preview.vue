@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import "@/style/global.less";
+import "@/styles/global.less";
 import Pager from "./";
 export default {
   components: {

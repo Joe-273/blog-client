@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import "@/style/global.less";
+import "@/styles/global.less";
 import ImageLoader from "./";
 export default {
   components: {
