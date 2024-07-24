@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import "@/style/global.less";
+import "@/styles/global.less";
 import Icon from "./";
 import url from "@/assets/404AM.png";
 export default {
@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~@/style/common.less";
+@import "~@/styles/common.less";
 
 .test-container {
   margin-top: 100px;

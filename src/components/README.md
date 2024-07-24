@@ -17,7 +17,7 @@
 
 ## Icon
 
-![image-20240723175650655](C:\Users\Qihao\AppData\Roaming\Typora\typora-user-images\image-20240723175650655.png)
+![image-20240725001313949](C:\Users\Qihao\AppData\Roaming\Typora\typora-user-images\image-20240725001313949.png)
 
 图标组件  来自[ 阿里巴巴矢量库 ]
 

@@ -17,8 +17,8 @@
 </template>
 
 <style lang="less" scoped>
-@import "~@/style/common.less";
-@import "~@/style/var.less";
+@import "~@/styles/common.less";
+@import "~@/styles/var.less";
 .munu-container {
   width: 100%;
   .item {

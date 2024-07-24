@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~@/style/common.less";
+@import "~@/styles/common.less";
 #app {
   .self-fill(fixed);
   .left {

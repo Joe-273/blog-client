@@ -57,8 +57,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~@/style/common.less";
-@import "~@/style/var.less";
+@import "~@/styles/common.less";
+@import "~@/styles/var.less";
 .contact-container {
   margin: 30px 0;
   color: @lightWords;
