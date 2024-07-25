@@ -1,10 +1,10 @@
 <template>
   <div class="imageloader-container">
-    <img v-if="!originImageDone" class="placeholder" :src="placeholder" />
+    <img class="placeholder" :src="placeholder" />
     <img
       @load="handleImageLoad"
       :src="src"
-      :style="{ opacity: originImageOpacity, transition: `${duration}ms` }"
+      :style="{ opacity: originImageOpacity, transition: `${duration}ms ease-in-out` }"
     />
   </div>
 </template>
@@ -14,7 +14,6 @@ export default {
   data() {
     return {
       originImageLoaded: false, // 原图加载完成
-      originImageDone: false, // 原图片过渡完成，初始化结束
     };
   },
   props: {
@@ -30,22 +29,35 @@ export default {
       type: Number,
       default: 1000,
     },
+    isReach: {
+      type: Boolean,
+      require: true,
+      default: false,
+    },
   },
   methods: {
     handleImageLoad() {
       // 监听到图片加载完成
       this.originImageLoaded = true;
-      // 开始计时
       setTimeout(() => {
-        this.originImageDone = true;
-        // 图片过渡完成，初始化结束，发送信号
+        if (!this.isReach) return;
+        // 图片加载完成时，isReach为true的会发送信号
         this.$emit("loaded");
       }, this.duration);
+    },
+    onIsReachChange() {
+      // 当isReach变换时，会调用该函数，重新判断是否应该发送信号
+      this.handleImageLoad();
     },
   },
   computed: {
     originImageOpacity() {
-      return this.originImageLoaded ? 1 : 0;
+      return this.originImageLoaded && this.isReach ? 1 : 0;
+    },
+  },
+  watch: {
+    isReach() {
+      this.onIsReachChange();
     },
   },
 };
@@ -54,6 +66,8 @@ export default {
 <style lang="less" scoped>
 @import "~@/styles/common.less";
 .imageloader-container {
+  height: 100%;
+  width: 100%;
   position: relative;
   overflow: hidden;
   img {

@@ -4,7 +4,6 @@ import { showMessage } from "@/utils";
 const instance = axios.create();
 instance.interceptors.response.use(function(resp) {
   if (resp.data.code !== 0) {
-    console.log(resp.data);
     showMessage({
       content: `${resp.data.msg}`,
       type: "error",

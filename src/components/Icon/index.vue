@@ -6,10 +6,10 @@
 const mapIcon = {
   github: "icon-github1",
   error: "icon-cuowu",
-  arrowDown: "icon-cc-arrow-down-circle",
+  arrowDown: "icon-chevron_big_down",
   arrowLeft: "icon-cc-arrow-left-circle",
   arrowRight: "icon-cc-arrow-right-circle",
-  arrowUp: "icon-cc-arrow-up-circle",
+  arrowUp: "icon-chevron_big_up",
   info: "icon-xinxi",
   leaveWord: "icon-liuyan",
   email: "icon-email",
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "//at.alicdn.com/t/c/font_4629566_l3sgaf5yuxl.css";
+@import "//at.alicdn.com/t/c/font_4629566_z2m1m9bqzlc.css";
 .iconfont {
   font-size: inherit;
   color: inherit;

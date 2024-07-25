@@ -24,8 +24,9 @@
   .item {
     position: relative;
     transition: 0.25s;
+    .border-style(4px;transparent);
+    overflow: hidden;
     .aLink {
-      .border-style(4px;transparent);
       font-size: 18px;
       padding: 15px 0;
       .flex-center();
