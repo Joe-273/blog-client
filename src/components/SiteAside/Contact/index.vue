@@ -59,22 +59,22 @@ export default {
 <style lang="less" scoped>
 @import "~@/styles/common.less";
 @import "~@/styles/var.less";
+@width: 240px;
 .contact-container {
-  margin: 30px 0;
-  color: @lightWords;
   .flex-center();
+  .self-center();
+  top: -30px;
+  color: @lightWords;
   font-size: 14px;
-  padding-top: 100%;
-  position: relative;
-  justify-content: space-around;
   .item {
+    margin: 0 10px;
     .aLink {
-      .flex-center();
       .icon {
+        @d: 36px;
         .flex-center();
         .border-style(50%, @lightWords);
-        width: 36px;
-        height: 36px;
+        width: @d;
+        height: @d;
         font-size: 22px;
         transition: 0.25s;
       }
@@ -87,15 +87,18 @@ export default {
     }
     .image {
       transform-origin: center 110%;
-      transform: scaleY(0);
       opacity: 0;
       transition: 0.25s;
       position: absolute;
       pointer-events: none;
-      left: 0;
-      top: -20px;
-      padding-top: 100%;
+      left: 50%;
+      bottom: 50px;
+      transform: translate(-50%, 0) scaleY(0);
+      max-width: @width;
+      max-height: @width;
       width: 100%;
+      margin: 0 auto;
+      padding-top: 100%;
       background-color: @gray;
       .border-style(8px);
       &::after {
@@ -119,7 +122,7 @@ export default {
     &:hover {
       .image {
         opacity: 1;
-        transform: scaleY(1);
+        transform: translate(-50%, 0) scaleY(1);
       }
     }
   }

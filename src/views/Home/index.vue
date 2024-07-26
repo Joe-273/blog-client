@@ -115,14 +115,6 @@ export default {
   position: relative;
   overflow: hidden;
 
-  // // 测试
-  // width: 60%;
-  // height: 60%;
-  // margin: 0 auto;
-  // border: 1px solid red;
-  // margin-top: 100px;
-  // overflow: visible;
-
   .main {
     transition: 0.5s;
     width: 100%;

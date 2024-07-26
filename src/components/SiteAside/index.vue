@@ -7,9 +7,9 @@
       </div>
       <Menu />
     </div>
-    <div>
+    <div class="footer">
       <Contact />
-      <p class="footer">备案号:xxxx</p>
+      <p>备案号:xxxx</p>
     </div>
   </div>
 </template>
@@ -39,10 +39,11 @@ export default {
 @import "~@/styles/common.less";
 .site-aside-container {
   height: 100%;
-  padding: 5%;
+  width: 100%;
+  transition: 0.2s;
+  padding: 15px;
   overflow-y: scroll;
   overflow-x: hidden;
-  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -52,14 +53,15 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    flex: 0 0 auto;
     > * {
       margin: 20px 0;
     }
     .avatar {
-      flex: 0 0 auto;
       .flex-center();
       flex-direction: column;
       .nameText {
+        white-space: nowrap;
         margin: 20px 0;
         color: @gray;
         font-size: 22px;
@@ -71,9 +73,15 @@ export default {
     display: none;
   }
   .footer {
-    margin: 10px 0;
-    font-size: 12px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     color: @lightWords;
+    white-space: nowrap;
+    font-size: 12px;
+    margin-top: 40px;
   }
 }
 </style>

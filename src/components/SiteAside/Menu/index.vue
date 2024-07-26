@@ -21,7 +21,9 @@
 @import "~@/styles/var.less";
 .munu-container {
   width: 100%;
+  overflow: hidden;
   .item {
+    white-space: nowrap;
     position: relative;
     transition: 0.25s;
     .border-style(4px;transparent);
@@ -31,10 +33,12 @@
       padding: 15px 0;
       .flex-center();
       .icon {
-        position: absolute;
-        left: 20%;
-        top: 50%;
-        transform: translateY(-50%);
+        .flex-center();
+        margin-right: 14px;
+        font-size: 22px;
+      }
+      span {
+        padding-right: 20px;
       }
     }
     .active,
