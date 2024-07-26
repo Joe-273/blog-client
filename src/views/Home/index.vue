@@ -1,34 +1,22 @@
 <template>
-  <div class="home-container" ref="homeContainer" @wheel="wheelHandler">
+  <div v-loading="isLoading" class="home-container" ref="homeContainer" @wheel="wheelHandler">
     <ul class="main" :style="{ marginTop }">
-      <li v-for="(item, index) in itemArray" :key="item.id" class="item">
-        <CarouselImage :item="item" :isEnterIcon="isEnterIcon" :isReach="isReach(index)" />
+      <li v-for="(item, index) in data" :key="item.id" class="item">
+        <CarouselImage :item="item" :isReach="isReach(index)" />
       </li>
     </ul>
     <ul class="indicator">
       <li
         @click="jumpTo(index)"
-        v-for="(item, index) in itemArray"
+        v-for="(item, index) in data"
         :key="item.id"
         :class="{ active: currentIndex === index }"
       ></li>
     </ul>
-    <div
-      @mouseenter="mouseEnterIconHandler"
-      @mouseleave="mouseLeaveIconHandler"
-      @click="jumpTo(currentIndex - 1)"
-      v-show="currentIndex > 0"
-      class="arrowUp"
-    >
+    <div @click="jumpTo(currentIndex - 1)" v-show="currentIndex > 0" class="arrowUp">
       <Icon type="arrowUp" />
     </div>
-    <div
-      @mouseenter="mouseEnterIconHandler"
-      @mouseleave="mouseLeaveIconHandler"
-      @click="jumpTo(currentIndex + 1)"
-      v-show="currentIndex < itemArray.length - 1"
-      class="arrowDown"
-    >
+    <div @click="jumpTo(currentIndex + 1)" v-show="currentIndex < data.length - 1" class="arrowDown">
       <Icon type="arrowDown" />
     </div>
   </div>
@@ -38,19 +26,23 @@
 import Icon from "@/components/Icon";
 import CarouselImage from "./CarouselImage.vue";
 import { getBanner } from "@/api/banner";
+import vLoading from "@/directives/loading.js";
+import remoteFetchData from "@/mixins/remoteFetchData";
 
 export default {
+  mixins: [remoteFetchData(getBanner, [])],
   components: {
     CarouselImage,
     Icon,
   },
+  directives: {
+    loading: vLoading,
+  },
   data() {
     return {
-      itemArray: [],
       currentIndex: 0,
       containerHeight: 0,
       timerId: null,
-      isEnterIcon: false,
     };
   },
   methods: {
@@ -60,7 +52,7 @@ export default {
     },
     wheelHandler(e) {
       if (this.timerId) return;
-      if (e.deltaY > 0 && this.currentIndex < this.itemArray.length - 1) {
+      if (e.deltaY > 0 && this.currentIndex < this.data.length - 1) {
         this.currentIndex++;
       }
       if (e.deltaY < 0 && this.currentIndex > 0) {
@@ -73,12 +65,6 @@ export default {
     resizeHandler() {
       this.containerHeight = this.$refs.homeContainer.clientHeight;
     },
-    mouseEnterIconHandler() {
-      this.isEnterIcon = true;
-    },
-    mouseLeaveIconHandler() {
-      this.isEnterIcon = false;
-    },
   },
   computed: {
     marginTop() {
@@ -89,10 +75,6 @@ export default {
         return index === this.currentIndex;
       };
     },
-  },
-  async created() {
-    const resp = await getBanner();
-    this.itemArray = resp;
   },
   mounted() {
     window.addEventListener("resize", this.resizeHandler);
@@ -115,8 +97,16 @@ export default {
   position: relative;
   overflow: hidden;
 
+  // 测试
+  // width: 60%;
+  // height: 60%;
+  // margin: 0 auto;
+  // margin-top: 100px;
+  // overflow: visible;
+  // border: 1px solid red;
+
   .main {
-    transition: 0.5s;
+    transition: 0.25s;
     width: 100%;
     height: 100%;
     .item {

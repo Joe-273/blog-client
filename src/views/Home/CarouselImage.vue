@@ -1,11 +1,6 @@
 <template>
   <!-- 显示的容器 -->
-  <div
-    @mousemove="mousemoveHandler"
-    @mouseleave="mouseleaveHandler"
-    class="carousel-container"
-    ref="container"
-  >
+  <div @mousemove="mousemoveHandler" class="carousel-container" ref="container">
     <!-- ImageLoader组件的容器 -->
     <div :style="finalOffset" class="image-loader" ref="imgContainer">
       <ImageLoader :src="item.bigImg" :placeholder="item.midImg" :isReach="isReach" @loaded="loadedHandler" />
@@ -21,18 +16,20 @@
 
 <script>
 import ImageLoader from "@/components/ImageLoader";
+import debounce from "@/utils/debounce";
 export default {
   components: {
     ImageLoader,
   },
-  props: ["item", "isEnterIcon", "isReach"],
+  props: ["item", "isReach"],
   data() {
     return {
       container: null,
       imgContainer: null,
+      maxOffset: null,
       mouseOffset: {
-        x: 0,
-        y: 0,
+        x: null,
+        y: null,
       },
       timerId: null,
       textOpacity: 0,
@@ -44,44 +41,61 @@ export default {
   },
   methods: {
     writeContainersData() {
+      // 初始化:
       // 将容器实际宽高保存到组件data中
       this.container = {
-        x: this.$refs.container.offsetWidth,
-        y: this.$refs.container.offsetHeight,
+        x: this.$refs.container.clientWidth,
+        y: this.$refs.container.clientHeight,
       };
+
+      this.mouseOffset.x = this.container.x / 2;
+      this.mouseOffset.y = this.container.y / 2;
+
       this.imgContainer = {
-        x: this.$refs.imgContainer.offsetWidth,
-        y: this.$refs.imgContainer.offsetHeight,
+        x: this.$refs.imgContainer.clientWidth,
+        y: this.$refs.imgContainer.clientHeight,
+      };
+      this.maxOffset = {
+        x: this.imgContainer.x - this.container.x,
+        y: this.imgContainer.y - this.container.y,
       };
     },
+    // 将banner恢复到中间位置
+    resetBannerHandler: debounce((that) => {
+      that.$refs.imgContainer.style.transition = "1.25s";
+      that.mouseOffset.x = that.container.x / 2;
+      that.mouseOffset.y = that.container.y / 2;
+    }, 4000),
     mousemoveHandler(e) {
       if (this.timerId) return;
+      if (!this.$refs.container.getBoundingClientRect()) return;
+
+      if (this.$refs.imgContainer.style.transition !== "0.25s") {
+        this.$refs.imgContainer.style.transition = "0.25s";
+      }
+
+      const containerRect = this.$refs.container.getBoundingClientRect();
+      // 某些奇怪的原因,导致offset有小概率为负值
+      let offsetX = Math.abs(e.x - containerRect.x);
+      let offsetY = Math.abs(e.y - containerRect.y);
+
+      // 鼠标停止移动时间超过4秒,将banner复位
+      this.resetBannerHandler(this);
       // 节流
       this.timerId = setTimeout(() => {
-        if (!this.$refs.container.getBoundingClientRect()) return;
-        const containerRect = this.$refs.container.getBoundingClientRect();
-        this.mouseOffset.x = e.x - containerRect.x;
-        this.mouseOffset.y = e.y - containerRect.y;
+        this.mouseOffset.x = offsetX;
+        this.mouseOffset.y = offsetY;
         this.timerId = null;
       }, 40);
     },
-    // 鼠标离开container事件
-    mouseleaveHandler() {
-      setTimeout(() => {
-        if (this.isEnterIcon) return;
-        this.mouseOffset.x = this.container.x / 2;
-        this.mouseOffset.y = this.container.y / 2;
-      }, 100);
-    },
+
     resizeHandler() {
       this.writeContainersData();
     },
-
     loadedHandler() {
       this.isReach && (this.textOpacity = 1);
       this.$refs.title.style.width = this.textWidth.title + "px";
       this.$refs.description.style.width = this.textWidth.description + "px";
-      console.log("加载完成");
     },
     // 当isReach发生改变，调用以下函数
     onIsReachChange() {
@@ -101,12 +115,9 @@ export default {
 
   computed: {
     finalOffset() {
-      if (!this.imgContainer || !this.container) return;
-
-      const maxOffsetX = this.imgContainer.x - this.container.x;
-      const maxOffsetY = this.imgContainer.y - this.container.y;
-      let finalOffsetX = (maxOffsetX / this.container.x) * this.mouseOffset.x;
-      let finalOffsetY = (maxOffsetY / this.container.y) * this.mouseOffset.y;
+      if (!this.imgContainer && !this.container) return;
+      let finalOffsetX = (this.maxOffset.x / this.container.x) * this.mouseOffset.x;
+      let finalOffsetY = (this.maxOffset.y / this.container.y) * this.mouseOffset.y;
       return { transform: `translate(${-finalOffsetX}px,${-finalOffsetY}px)` };
     },
   },
@@ -122,6 +133,7 @@ export default {
     window.addEventListener("resize", this.resizeHandler);
     // 获取文本的宽度
     this.initTextStatus();
+    // 居中Banner图片
   },
   destroyed() {
     window.removeEventListener("resize", this.resizeHandler);
@@ -138,7 +150,8 @@ export default {
   overflow: hidden;
   position: relative;
   .image-loader {
-    transition: 0.25s;
+    // transition: 0.25s;
+    overflow: hidden;
     position: absolute;
     width: 110%;
     height: 110%;
