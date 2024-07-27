@@ -1,11 +1,23 @@
 <template>
-  <div>
-    <h1>博客</h1>
-  </div>
+  <Layout class="blog-container">
+    <BlogProfileList />
+    <template #right>
+      <BlogCategory />
+    </template>
+  </Layout>
 </template>
 
 <script>
-export default {};
+import Layout from "@/components/Layout";
+import BlogProfileList from "./components/BlogProfileList";
+import BlogCategory from "./components/BlogCategory";
+export default {
+  components: {
+    Layout,
+    BlogProfileList,
+    BlogCategory,
+  },
+};
 </script>
 
 <style lang="less" scoped></style>

@@ -26,17 +26,14 @@
 import Icon from "@/components/Icon";
 import CarouselImage from "./CarouselImage.vue";
 import { getBanner } from "@/api/banner";
-import vLoading from "@/directives/loading.js";
-import remoteFetchData from "@/mixins/remoteFetchData";
+import fetchRemoteData from "@/mixins/fetchRemoteData.js";
 
 export default {
-  mixins: [remoteFetchData(getBanner, [])],
+  mixins: [fetchRemoteData([])],
+
   components: {
     CarouselImage,
     Icon,
-  },
-  directives: {
-    loading: vLoading,
   },
   data() {
     return {
@@ -46,6 +43,9 @@ export default {
     };
   },
   methods: {
+    async fetchData() {
+      return await getBanner();
+    },
     // 跳转banner图
     jumpTo(index) {
       this.currentIndex = index;

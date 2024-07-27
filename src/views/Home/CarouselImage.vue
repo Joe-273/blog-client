@@ -62,7 +62,7 @@ export default {
     },
     // 将banner恢复到中间位置
     resetBannerHandler: debounce((that) => {
-      that.$refs.imgContainer.style.transition = "1.25s";
+      that.$refs.imgContainer && (that.$refs.imgContainer.style.transition = "1.25s");
       that.mouseOffset.x = that.container.x / 2;
       that.mouseOffset.y = that.container.y / 2;
     }, 4000),
@@ -172,6 +172,7 @@ export default {
     color: darken(@white, 15%);
     top: @top;
     text-shadow: 1px 0 0 @fontColor, -1px 0 0 @fontColor, 0 1px 0 @fontColor, 0 -1px 0 @fontColor;
+    user-select: none;
   }
   .description {
     transition: @duration @duration;

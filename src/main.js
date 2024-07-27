@@ -7,6 +7,9 @@ import router from "./router"; // 使用路由
 import { showMessage } from "./utils"; // 消息弹框插件
 Vue.prototype.$showMessage = showMessage;
 
+import vLoading from "./directives/loading";
+Vue.directive("loading", vLoading);
+
 new Vue({
   router, // 在实例中使用路由
   render: (h) => h(App),

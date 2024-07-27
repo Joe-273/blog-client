@@ -1,6 +1,10 @@
 @import "~@/styles/var.less";
 @import "~@/styles/common.less";
 
+div[data-role="loading"] {
+  width: 100%;
+  height: 100%;
+}
 .center {
   .self-center();
 }
@@ -24,7 +28,7 @@
   text-align: center;
   line-height: @size;
   font-size: 18px;
-  background: transparent;
+  background: @white;
   text-shadow: 0 0 15px @gray;
   box-shadow: 0 0 15px lighten(@primary, 10%);
   user-select: none;

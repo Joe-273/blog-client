@@ -22,6 +22,11 @@ const routes = [
     component: Blog,
   },
   {
+    name: "BlogCategory",
+    path: "/blog/cate/:categoryId",
+    component: Blog,
+  },
+  {
     name: "LeaveWords",
     path: "/leavewords",
     component: LeaveWords,

@@ -1,11 +1,10 @@
 // 公共远程获取数据的代码
 /**
- * 远程获取数据
- * @param {*} fn 需要调用的获取远程数据的函数
+ * 远程获取数据,需要自行提供一个fetchData异步函数
  * @param {*} defaultValue 获取数据的初始值
  * @returns
  */
-export default function(fn, defaultValue = null) {
+export default function(defaultValue = null) {
   return {
     data() {
       return {
@@ -14,7 +13,7 @@ export default function(fn, defaultValue = null) {
       };
     },
     async created() {
-      this.data = await fn();
+      this.data = await this.fetchData();
       this.isLoading = false;
     },
   };

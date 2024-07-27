@@ -42,6 +42,7 @@ export default {
   },
   methods: {
     handlerClick(newPage) {
+      if (newPage === this.current) return;
       // 发送页面跳转信号
       this.$emit("pageChanged", newPage);
     },
@@ -55,7 +56,6 @@ export default {
       min < 1 && (min = 1);
       min > this.totalPageNumber - (this.visibleNumber - 1) &&
         (min = this.totalPageNumber - (this.visibleNumber - 1));
-      console.log(min);
       let pageArray = new Array(this.visibleNumber).fill(0).map(() => min++);
       return pageArray;
     },

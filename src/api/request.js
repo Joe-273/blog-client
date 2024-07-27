@@ -5,7 +5,7 @@ const instance = axios.create();
 instance.interceptors.response.use(function(resp) {
   if (resp.data.code !== 0) {
     showMessage({
-      content: `${resp.data.msg}`,
+      content: resp.data.msg,
       type: "error",
     });
     return null;
