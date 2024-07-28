@@ -1,6 +1,6 @@
 <template>
   <div class="site-aside-container">
-    <div class="main-container" :class="{ closed: isClosed }">
+    <div class="main-container">
       <div class="body">
         <div class="avatar">
           <Avatar :imgUrl="imgUrl" />
@@ -12,9 +12,6 @@
         <Contact />
         <p>备案号:xxxx</p>
       </div>
-    </div>
-    <div @click="clickHanlder" class="switch">
-      <Icon class="icon" :type="isClosed ? 'arrowRight' : 'arrowLeft'" />
     </div>
   </div>
 </template>
@@ -36,14 +33,7 @@ export default {
   data() {
     return {
       imgUrl,
-      isClosed: false,
     };
-  },
-  methods: {
-    clickHanlder() {
-      this.isClosed = !this.isClosed;
-      this.$emit("switchAsideBar", this.isClosed);
-    },
   },
 };
 </script>
@@ -60,7 +50,8 @@ export default {
     width: 100%;
     transition: 0.25s;
     transition: opacity 0s;
-    padding: 15px;
+    padding: 15px 5%;
+
     overflow-y: scroll;
     overflow-x: hidden;
     display: flex;
@@ -101,38 +92,6 @@ export default {
       white-space: nowrap;
       font-size: 12px;
       margin-top: 40px;
-    }
-    &.closed {
-      opacity: 0;
-      transition: opacity 0.25s 0.25s;
-    }
-  }
-  .switch {
-    background: lighten(@dark, 10%);
-    position: absolute;
-    height: 90px;
-    width: 5px;
-    border-radius: 0 50% 50% 0;
-    top: 50%;
-    left: 100%;
-    transform: translateY(-50%);
-    z-index: 999;
-    transition: 0.25s;
-    cursor: pointer;
-    overflow: hidden;
-    .icon {
-      .self-center();
-      transition: 0.25s;
-      transform: translate(calc(-50% - 10px), -50%);
-      font-size: 36px;
-      color: @gray;
-    }
-    &:hover {
-      height: 45px;
-      width: 25px;
-      .icon {
-        transform: translate(calc(-50% - 2px), -50%);
-      }
     }
   }
 }

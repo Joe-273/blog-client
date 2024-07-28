@@ -1,5 +1,5 @@
 <template>
-  <Layout class="blog-container">
+  <Layout :showRight="true" class="blog-container">
     <BlogProfileList />
     <template #right>
       <BlogCategory />

@@ -1,6 +1,7 @@
 import Home from "@/views/Home";
 import About from "@/views/About";
-import Blog from "@/views/Blog";
+import Blog from "@/views/Blog/Blog.vue";
+import BlogDetail from "@/views/Blog/BlogDetail.vue";
 import LeaveWords from "@/views/LeaveWords";
 import Project from "@/views/Project";
 
@@ -25,6 +26,11 @@ const routes = [
     name: "BlogCategory",
     path: "/blog/cate/:categoryId",
     component: Blog,
+  },
+  {
+    name: "BlogDetail",
+    path: "/blog/detail/:blogId",
+    component: BlogDetail,
   },
   {
     name: "LeaveWords",

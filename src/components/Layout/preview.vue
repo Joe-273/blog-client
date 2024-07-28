@@ -63,23 +63,23 @@ export default {
   width: 100%;
   .left {
     flex: 0 0 auto;
-    width: 250px;
+    width: 100%;
     height: 100%;
-    background-color: lightblue;
+    // background-color: lightblue;
   }
   .main {
     flex: 1 1 auto;
     width: 100%;
     height: 100%;
 
-    background-color: lightcoral;
+    // background-color: lightcoral;
   }
   .right {
     flex: 0 0 auto;
-    width: 300px;
+    width: 100%;
     height: 100%;
 
-    background-color: lightgreen;
+    // background-color: lightgreen;
   }
 }
 </style>

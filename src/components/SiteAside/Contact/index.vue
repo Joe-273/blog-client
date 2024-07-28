@@ -62,7 +62,7 @@ export default {
 @width: 240px;
 .contact-container {
   .flex-center();
-  .self-center();
+  .abs-center();
   top: -30px;
   color: @lightWords;
   font-size: 14px;
@@ -73,20 +73,20 @@ export default {
         @d: 36px;
         .flex-center();
         .border-style(50%, @lightWords);
+        transition: 0.25s;
         width: @d;
         height: @d;
         font-size: 22px;
-        transition: 0.25s;
       }
       &:hover {
         .icon {
-          transform: scale(1.15);
+          transform: scale(1.25);
           border-color: @primary;
         }
       }
     }
     .image {
-      transform-origin: center 110%;
+      transform-origin: center 100%;
       opacity: 0;
       transition: 0.25s;
       position: absolute;
@@ -122,13 +122,13 @@ export default {
     &:hover {
       .image {
         opacity: 1;
-        transform: translate(-50%, 0) scaleY(1);
+        transform: translate(-50%, -5px) scaleY(1);
       }
     }
   }
   .item:nth-child(1) {
     .image::after {
-      left: 10%;
+      left: 9.5%;
     }
   }
   .item:nth-child(2) {
