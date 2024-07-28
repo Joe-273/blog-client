@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Layout>
+    <Layout :showLeft="true">
       <template #left>
         <div class="left" :class="{ closed: isClosed }">
           <SiteAside @switchAsideBar="switchHandler"></SiteAside>
@@ -44,7 +44,6 @@ export default {
   .self-fill(fixed);
   background-color: @white;
   .left {
-    width: 280px;
     height: 100%;
     transition: 0.25s;
     .closed {

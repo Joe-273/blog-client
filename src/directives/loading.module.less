@@ -6,14 +6,14 @@ div[data-role="loading"] {
   height: 100%;
 }
 .center {
-  .self-center();
+  .abs-center();
 }
-@size: 80px;
+@size: 60px;
 .ring {
   width: @size;
   height: @size;
   border-radius: 50%;
-  box-shadow: 0 4px 0 lighten(@primary, 10%);
+  box-shadow: 0 2px 0 lighten(@primary, 10%);
   background: transparent;
   animation: Cycle 0.5s linear infinite;
 }
@@ -27,10 +27,10 @@ div[data-role="loading"] {
   border-radius: 50%;
   text-align: center;
   line-height: @size;
-  font-size: 18px;
+  font-size: 14px;
   background: @white;
   text-shadow: 0 0 15px @gray;
-  box-shadow: 0 0 15px lighten(@primary, 10%);
+  // box-shadow: 0 0 5px lighten(@primary, 10%);
   user-select: none;
 }
 @keyframes Cycle {

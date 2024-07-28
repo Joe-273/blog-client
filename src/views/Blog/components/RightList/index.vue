@@ -3,7 +3,7 @@
     <li v-for="(item, index) in data" :key="index">
       <span class="title" @click="clickHandler(item)" :class="{ selected: item.isSelected }">
         {{ item.name }}
-        <span class="desc">{{ item.blogCount }}篇</span>
+        <span v-if="item.blogCount || false" class="desc">{{ item.blogCount }}篇</span>
       </span>
 
       <RightList v-if="!!item.children && item.children.length" :data="item.children" />
@@ -39,6 +39,7 @@ export default {
   line-height: 40px;
   .title {
     display: block;
+    white-space: nowrap;
     padding-left: 15px;
     height: 40px;
     font-size: 16px;

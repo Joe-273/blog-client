@@ -27,22 +27,17 @@
   height: 100%;
   width: 100%;
 }
-.self-center(@pos: absolute) {
-  position: @pos;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
 .scroll-style() {
   &::-webkit-scrollbar-thumb {
     background: @lightWords; /* 滑块的背景颜色 */
-    border-radius: 4px; /* 滑块的圆角 */
+    border-radius: 6px; /* 滑块的圆角 */
+    border: 1px solid @gray;
   }
   &::-webkit-scrollbar-track {
-    background: @gray; /* 轨道的背景颜色 */
+    background: transparent; /* 轨道的背景颜色 */
   }
   &::-webkit-scrollbar {
-    width: 8px; /* 滚动条的宽度 */
+    width: 12px; /* 滚动条的宽度 */
   }
   &::-webkit-scrollbar-thumb:hover {
     background: darken(@lightWords, 10%); /* 悬停状态下滑块的颜色 */

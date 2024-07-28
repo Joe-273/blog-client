@@ -1,7 +1,9 @@
 <template>
   <div class="blog-catrgory-container" v-loading="isLoading">
-    <h2>博客类别</h2>
-    <RightList :data="list" @selected="selectedHandler" />
+    <div class="main">
+      <h2>博客类别</h2>
+      <RightList v-if="!isLoading" :data="list" @selected="selectedHandler" class="rightList" />
+    </div>
   </div>
 </template>
 
@@ -19,7 +21,6 @@ export default {
       return await getBlogCatrgories();
     },
     selectedHandler(item) {
-      console.log(item);
       const query = {
         page: 1,
         limit: this.limit,
@@ -69,15 +70,28 @@ export default {
 @import "~@/styles/var.less";
 @import "~@/styles/common.less";
 .blog-catrgory-container {
-  overflow-y: scroll;
-  overflow-x: hidden;
-  position: relative;
-  width: 260px;
-  padding: 20px;
+  @padding: 20px;
+  width: 100%;
   height: 100%;
-  .scroll-style();
-  h2 {
-    margin-bottom: 15px;
+  position: relative;
+  overflow: hidden;
+  .main {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: @padding;
+    .scroll-style();
+    h2 {
+      user-select: none;
+      position: absolute;
+      top: @padding;
+      left: @padding;
+      margin: 10px 0;
+    }
+    .rightList {
+      margin-top: 60px;
+    }
   }
 }
 </style>

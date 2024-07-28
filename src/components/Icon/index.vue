@@ -4,6 +4,10 @@
 
 <script>
 const mapIcon = {
+  pageView: "icon-icon-",
+  date: "icon-riqi1",
+  comment: "icon-pinglun1",
+  classify: "icon-icon",
   github: "icon-github1",
   error: "icon-cuowu",
   arrowDown: "icon-chevron_big_down",
@@ -41,7 +45,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "//at.alicdn.com/t/c/font_4629566_qksmaqxzzo8.css";
+@import "//at.alicdn.com/t/c/font_4629566_fdtc2r4lszd.css";
 .iconfont {
   font-size: inherit;
   color: inherit;

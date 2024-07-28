@@ -3,19 +3,53 @@
     <ul v-show="!isLoading">
       <li v-for="item in data.rows" :key="item.id">
         <div class="thumb" v-if="item.thumb">
-          <a href="">
+          <RouterLink
+            :to="{
+              name: 'BlogDetail',
+              params: {
+                blogId: item.id,
+              },
+            }"
+          >
             <img :src="item.thumb" :alt="item.title" :title="item.title" />
-          </a>
+          </RouterLink>
         </div>
         <div class="main">
-          <a href="">
+          <RouterLink
+            :to="{
+              name: 'BlogDetail',
+              params: {
+                blogId: item.id,
+              },
+            }"
+          >
             <h2>{{ item.title }}</h2>
-          </a>
+          </RouterLink>
           <div class="aside">
-            <span>日期：{{ formatDate(item.createDate) }}</span>
-            <span>浏览：{{ item.commentNumber }}</span>
-            <span>评论：{{ item.scanNumber }}</span>
-            <a href="/blog/cate/8" class="">{{ item.category.name }}</a>
+            <span class="flexText">
+              <Icon class="icon" type="date" />
+              {{ formatDate(item.createDate) }}
+            </span>
+            <span class="flexText">
+              <Icon class="icon" type="pageView" />
+              {{ item.commentNumber }}
+            </span>
+            <span class="flexText">
+              <Icon class="icon" type="comment" />
+              {{ item.scanNumber }}
+            </span>
+            <RouterLink
+              class="flexText"
+              :to="{
+                name: 'BlogCategory',
+                params: {
+                  categoryId: item.category.id,
+                },
+              }"
+            >
+              <Icon class="icon" type="classify" />
+              {{ item.category.name }}
+            </RouterLink>
           </div>
           <div class="desc">
             {{ item.description }}
@@ -41,10 +75,13 @@ import Pager from "@/components/Pager";
 import fetchRemoteData from "@/mixins/fetchRemoteData.js";
 import { getBlogs } from "@/api/blog";
 import { formatDate } from "@/utils";
+import Icon from "@/components/Icon";
+
 export default {
   mixins: [fetchRemoteData({})],
   components: {
     Pager,
+    Icon,
   },
   methods: {
     formatDate,
@@ -106,11 +143,11 @@ export default {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   .scroll-style();
   ul {
     overflow: hidden;
-    margin: 20px;
+    margin: 30px;
     li {
       padding: 15px;
       width: 100%;
@@ -144,8 +181,15 @@ export default {
           font-size: 14px;
           margin-top: 5px;
           margin-bottom: 15px;
-          span {
-            margin-right: 20px;
+          display: flex;
+          .flexText {
+            margin-right: 25px;
+            display: flex;
+            align-items: center;
+            .icon {
+              font-size: 20px;
+              padding-right: 5px;
+            }
           }
         }
         .desc {
