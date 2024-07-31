@@ -294,31 +294,32 @@ Mock.mock("/api/comment", "post", {
   },
 });
 
-Mock.mock(/^\/api\/comment(\/.+)+$/, "get", {
-  code: 0,
-  msg: "",
-  data: {
-    total: 786, //评论总数
-    rows: [
-      //当前页列表数据
-      {
-        "id|0-520": 0,
-        nickname: function() {
-          return `I坤${this.id}号`;
+Mock.mock(/^\/api\/comment(\/.+)+$/, "get", function(options) {
+  const query = qs.parse(options.url);
+  return Mock.mock({
+    code: 0,
+    msg: "",
+    data: {
+      total: 46, //评论总数
+      [`rows|${query.limit || 10}`]: [
+        //当前页列表数据
+        {
+          id: "@guid",
+          nickname: "I坤@integer(10,99)号",
+          content: "评论内容，纯路人：@cparagraph(1, 4)",
+          blog: {
+            "id|0-233": 0, // 博客id
+            title: "@ctitle(5,10)",
+          },
+          createDate: "@natural(1609459200000, " + Date.now() + ")",
+          "avatar|1": [
+            "https://picsum.photos/id/520/100/100",
+            "https://picsum.photos/id/999/100/100",
+            "https://picsum.photos/id/666/100/100",
+            "https://picsum.photos/id/233/100/100",
+          ],
         },
-        content: "评论内容，纯路人",
-        blog: {
-          "id|0-233": 0, // 博客id
-          title: "@ctitle(5,10)",
-        },
-        createDate: "@natural(1609459200000, " + Date.now() + ")",
-        "avatar|1": [
-          "https://picsum.photos/id/520/200/200",
-          "https://picsum.photos/id/999/200/200",
-          "https://picsum.photos/id/666/200/200",
-          "https://picsum.photos/id/233/200/200",
-        ],
-      },
-    ],
-  },
+      ],
+    },
+  });
 });

@@ -4,10 +4,13 @@ import style from "./showMessage.module.less";
 
 /**
  * 弹出对话框
- * @param {String} content 消息内容
- * @param {String} type  消息类型：info error success warn
- * @param {Number} duration  多久后消失
- * @param {HTMLElement} container 容器，消息显示到容器中间，没有值则显示到页面正中间
+ * @param {Object} {
+ *    content:    消息内容
+ *    type:       消息类型：info error success warn
+ *    container:  容器，消息显示到容器中间，没有值则显示到页面正中间
+ *    duration:   消失时长
+ *    callback:   回调函数，对话框消失后执行
+ * }
  */
 export default function(options = {}) {
   const content = options.content;

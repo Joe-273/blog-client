@@ -1,6 +1,6 @@
 <template>
   <div v-loading="isLoading" class="blog-profile-list-container">
-    <ul v-show="!isLoading">
+    <ul v-if="!isLoading">
       <li v-for="item in data.rows" :key="item.id">
         <div class="thumb" v-if="item.thumb">
           <RouterLink
@@ -139,17 +139,11 @@ export default {
 @import "~@/styles/var.less";
 @import "~@/styles/common.less";
 .blog-profile-list-container {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  overflow-y: auto;
-  .scroll-style();
+  padding-top: 40px;
   ul {
-    overflow: hidden;
-    margin: 30px;
     li {
       padding: 15px;
+      padding-top: 25px;
       width: 100%;
       border-bottom: 1px solid @gray;
       display: flex;
@@ -197,19 +191,16 @@ export default {
           white-space: normal;
           overflow: hidden;
           text-overflow: ellipsis;
-          color: @dark;
+          color: darken(@words, 15%);
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 4; /* 控制显示的行数 */
           line-clamp: 5;
           text-indent: 2em;
-          line-height: 1.4;
+          line-height: 22px;
         }
       }
     }
-  }
-  .pager {
-    margin: 60px 0;
   }
 }
 </style>

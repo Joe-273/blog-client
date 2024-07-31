@@ -17,7 +17,7 @@
 
 ## Icon
 
-![image-20240725001313949](C:\Users\Qihao\AppData\Roaming\Typora\typora-user-images\image-20240725001313949.png)
+![image-20240729042907823](C:\Users\Qihao\AppData\Roaming\Typora\typora-user-images\image-20240729042907823.png)
 
 图标组件  来自[ 阿里巴巴矢量库 ]
 
@@ -189,9 +189,25 @@
 
 ## SiteAside
 
-![image-20240724010453391](C:\Users\Qihao\AppData\Roaming\Typora\typora-user-images\image-20240724010453391.png)
+![image-20240729043003670](C:\Users\Qihao\AppData\Roaming\Typora\typora-user-images\image-20240729043003670.png)
 
 网站侧边栏
 
 宽高撑满外层容器
 
+-------------------
+
+
+
+## Layout
+
+![image-20240729043718416](C:\Users\Qihao\AppData\Roaming\Typora\typora-user-images\image-20240729043718416.png)
+
+用于布局，left和right区域固定宽度，main区域弹性宽度
+
+left和right可以通过拖拽改变宽度
+
+| 属性名    | 含义       | 类型    | 必填 | 默认值 |
+| --------- | ---------- | ------- | ---- | ------ |
+| showLeft  | 使用左侧栏 | Boolean | 否   | false  |
+| showRight | 使用右侧栏 | Boolean | 否   | false  |

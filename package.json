@@ -1,5 +1,5 @@
 {
-  "name": "my-site",
+  "name": "blog-front",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,7 +15,8 @@
     "preview-SiteAside": "vue serve ./src/components/SiteAside/preview.vue",
     "preview-Layout": "vue serve ./src/components/Layout/preview.vue",
     "preview-RightList": "vue serve ./src/views/Blog/components/RightList/preview.vue",
-    "preview-BlogProfileList": "vue serve ./src/views/Blog/components/BlogProfileList/preview.vue"
+    "preview-BlogProfileList": "vue serve ./src/views/Blog/components/BlogProfileList/preview.vue",
+    "preview-LeaveWordsArea": "vue serve ./src/components/LeaveWordsArea/preview.vue"
   },
   "dependencies": {
     "axios": "^1.7.2",

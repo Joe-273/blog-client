@@ -22,24 +22,24 @@ export default {
         {
           iconType: "qq",
           contentText: "1123116289",
-          imgUrl: "https://picsum.photos/252",
+          imgUrl: "",
           href: "",
         },
         {
           iconType: "wechat",
           contentText: "Joe",
-          imgUrl: "https://picsum.photos/248",
+          imgUrl: "",
           href: "",
         },
         {
           iconType: "github",
-          imgUrl: "https://picsum.photos/261",
+          imgUrl: "",
           href: "https://github.com/Joe-273?tab=repositories",
         },
         {
           iconType: "email",
           contentText: "Qihaowei.273@Outlook",
-          imgUrl: "https://picsum.photos/245",
+          imgUrl: "",
           href: "mailto:Qihaowei.273@Outlook.com",
         },
       ],

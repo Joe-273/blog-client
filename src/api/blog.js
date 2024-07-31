@@ -37,7 +37,7 @@ export async function postComment(commentInfo) {
 /**
  * 分页获取评论
  */
-export async function getComment(page = 1, limit = 10, blogid = -1) {
+export async function getComment(page = 1, limit = 10, blogid) {
   return await request.get("/api/comment/", {
     params: {
       page,
