@@ -69,7 +69,7 @@ export default {
 .pager-container {
   height: 80px;
   .flex-center();
-  margin-top: 20px;
+  margin-top: 40px;
   span {
     color: @words;
     font-size: 14px;

@@ -5,8 +5,11 @@
         {{ item.name }}
         <span v-if="item.blogCount || false" class="desc">{{ item.blogCount }}篇</span>
       </span>
-
-      <RightList v-if="!!item.children && item.children.length" :data="item.children" />
+      <RightList
+        @selected="clickHandler"
+        v-if="!!item.children && item.children.length"
+        :data="item.children"
+      />
     </li>
   </ul>
 </template>
@@ -44,7 +47,6 @@ export default {
     height: 40px;
     font-size: 16px;
     color: @words;
-    font-weight: 700;
     cursor: pointer;
     user-select: none;
     transition: 0.25s;

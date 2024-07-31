@@ -70,10 +70,10 @@ export default {
 @import "~@/styles/var.less";
 @import "~@/styles/common.less";
 .blog-catrgory-container {
+  position: relative;
   @padding: 20px;
   width: 100%;
   height: 100%;
-  position: relative;
   overflow: hidden;
   .main {
     width: 100%;
@@ -84,13 +84,10 @@ export default {
     .scroll-style();
     h2 {
       user-select: none;
-      position: absolute;
-      top: @padding;
-      left: @padding;
       margin: 10px 0;
     }
     .rightList {
-      margin-top: 60px;
+      margin-top: 25px;
     }
   }
 }

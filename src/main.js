@@ -10,19 +10,16 @@ Vue.prototype.$showMessage = showMessage;
 import vLoading from "./directives/loading";
 Vue.directive("loading", vLoading);
 
+// 事件总线
+/**
+ * 监听事件：mainScroll
+ * 含义：主区域滚动条位置变化后触发
+ * 参数：
+ * - 滚动条的dom元素
+ */
+Vue.prototype.$bus = new Vue({});
+
 new Vue({
   router, // 在实例中使用路由
   render: (h) => h(App),
 }).$mount("#app");
-
-//  测试api
-// import * as blogApi from "./api/blog";
-// blogApi.getBlogDetail("123").then((r) => console.log(r));
-// blogApi
-//   .postComment({
-//     nickname: "爱坤的只因",
-//     content: "评论内容，纯路人",
-//     blogId: 520,
-//   })
-//   .then((r) => console.log(r));
-// blogApi.getComment().then((r) => console.log(r));

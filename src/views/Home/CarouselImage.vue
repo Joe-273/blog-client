@@ -16,7 +16,7 @@
 
 <script>
 import ImageLoader from "@/components/ImageLoader";
-import debounce from "@/utils/debounce";
+import { debounce } from "@/utils";
 export default {
   components: {
     ImageLoader,

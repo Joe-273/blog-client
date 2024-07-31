@@ -29,11 +29,5 @@ export default {
 .avatar-container {
   object-fit: cover;
   border-radius: 50%;
-  border: 2px solid @lightWords;
-  transition: 0.25s ease;
-  &:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 25px @words;
-  }
 }
 </style>

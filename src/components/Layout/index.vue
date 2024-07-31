@@ -76,6 +76,7 @@ export default {
       startWidth: 0,
       isLeftClosed: false,
       isRightClosed: false,
+      timerId: null,
     };
   },
   methods: {
@@ -91,6 +92,8 @@ export default {
     startResizing(side) {
       // 拖拽过程中防止选中文本
       event.preventDefault();
+      // 改变鼠标手势
+      document.body.style.cursor = "e-resize";
 
       this.isResizing = true;
       this.activeResizer = side;
@@ -108,26 +111,31 @@ export default {
     },
     resize(event) {
       if (!this.isResizing) return;
-
-      const dx = event.clientX - this.startX;
-      if (this.activeResizer === "left") {
-        this.leftWidth = this.startWidth + dx;
-        if (this.leftWidth < 160) {
-          this.leftWidth = 0;
-          this.isLeftClosed = true;
-          this.stopResizing();
+      if (this.timerId) return;
+      console.log("object");
+      this.timerId = setTimeout(() => {
+        const dx = event.clientX - this.startX;
+        if (this.activeResizer === "left") {
+          this.leftWidth = this.startWidth + dx;
+          if (this.leftWidth < 160) {
+            this.leftWidth = 0;
+            this.isLeftClosed = true;
+            this.stopResizing();
+          }
+        } else if (this.activeResizer === "right") {
+          this.rightWidth = this.startWidth - dx;
+          if (this.rightWidth < 160) {
+            this.rightWidth = 0;
+            this.isRightClosed = true;
+            this.stopResizing();
+          }
         }
-      } else if (this.activeResizer === "right") {
-        this.rightWidth = this.startWidth - dx;
-        if (this.rightWidth < 160) {
-          this.rightWidth = 0;
-          this.isRightClosed = true;
-          this.stopResizing();
-        }
-      }
+        this.timerId = null;
+      }, 10);
     },
     stopResizing() {
       this.isResizing = false;
+      document.body.style.cursor = "auto";
       document.removeEventListener("mousemove", this.resize);
       document.removeEventListener("mouseup", this.stopResizing);
     },
@@ -143,39 +151,38 @@ export default {
 .layout-container {
   display: flex;
   overflow: hidden;
-
   width: 100%;
   height: 100%;
-
   .resizeBar {
     width: 3px;
     background-color: @color;
     cursor: e-resize;
     flex: 0 0 auto;
     position: relative;
-
+    &.leftBar {
+      background-color: lighten(@dark, 10%);
+    }
     &.closed {
       transition: 0.25s 0.25s;
       width: 0px;
-
       .switch {
         width: 12px;
+        opacity: 0.5;
       }
     }
-
     .switch {
       overflow: hidden;
       transition: 0.25s;
+      opacity: 0;
+      width: 0;
       cursor: pointer;
       position: absolute;
       background-color: @color;
-      width: 0;
       height: 85px;
       top: 50%;
       transform: translateY(-50%);
       color: @white;
       z-index: 999;
-
       .icon {
         transition: 0.25s;
         font-size: 36px;
@@ -183,12 +190,11 @@ export default {
         .abs-center();
         left: calc(50% - 20px);
       }
-
       &:hover {
         width: 35px;
         height: 55px;
         background-color: darken(@color, 10%);
-
+        opacity: 1;
         .icon {
           left: calc(50% - 3px);
         }

@@ -9,15 +9,23 @@
       <span class="flexText">
         <Icon class="icon" type="pageView" />
         {{ blogItem.scanNumber }}
-      </span class="flexText">
-      <a class="flexText">
+      </span>
+      <a href="#blog-comment-container" class="flexText">
         <Icon class="icon" type="comment" />
         {{ blogItem.commentNumber }}
       </a>
-      <a class="flexText">
+      <RouterLink
+        :to="{
+          name: 'BlogCategory',
+          params: {
+            categoryId: blogItem.category.id,
+          },
+        }"
+        class="flexText"
+      >
         <Icon class="icon" type="classify" />
         {{ blogItem.category.name }}
-      </a>
+      </RouterLink>
     </div>
     <div v-html="blogItem.htmlContent" class="htmlContent markdown-body"></div>
   </div>
@@ -48,11 +56,7 @@ export default {
 @import "~@/styles/var.less";
 @import "~@/styles/common.less";
 .blog-detail-content-container {
-  padding: 30px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 100%;
-  .scroll-style();
+  padding-top: 40px;
   h1 {
     margin: 10px 0 15px 0;
   }
@@ -71,8 +75,7 @@ export default {
       display: flex;
       align-items: center;
       .icon {
-        font-size: 20px;
-        padding-right: 5px;
+        .icon-style();
       }
     }
   }
