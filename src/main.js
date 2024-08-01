@@ -10,6 +10,9 @@ Vue.prototype.$showMessage = showMessage;
 import vLoading from "./directives/loading";
 Vue.directive("loading", vLoading);
 
+import vLazyLoad from "./directives/lazyload";
+Vue.directive("lazyload", vLazyLoad);
+
 // 事件总线
 /**
  * 监听事件：mainScroll

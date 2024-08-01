@@ -33,6 +33,9 @@ export default {
   mounted() {
     this.$refs.mainContainer && this.$refs.mainContainer.addEventListener("scroll", this.handleScroll);
   },
+  beforeDestroy() {
+    this.$refs.mainContainer.removeEventListener("scroll", this.handleScroll);
+  },
 };
 </script>
 

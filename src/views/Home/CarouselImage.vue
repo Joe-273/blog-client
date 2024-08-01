@@ -1,9 +1,9 @@
 <template>
   <!-- 显示的容器 -->
-  <div @mousemove="mousemoveHandler" class="carousel-container" ref="container">
+  <div @mousemove="handleMousemove" class="carousel-container" ref="container">
     <!-- ImageLoader组件的容器 -->
     <div :style="finalOffset" class="image-loader" ref="imgContainer">
-      <ImageLoader :src="item.bigImg" :placeholder="item.midImg" :isReach="isReach" @loaded="loadedHandler" />
+      <ImageLoader :src="item.bigImg" :placeholder="item.midImg" :isReach="isReach" @loaded="handleLoaded" />
       <p :style="{ opacity: this.textOpacity }" class="title" ref="title">
         {{ item.title }}
       </p>
@@ -61,12 +61,12 @@ export default {
       };
     },
     // 将banner恢复到中间位置
-    resetBannerHandler: debounce((that) => {
+    handleResetBanner: debounce((that) => {
       that.$refs.imgContainer && (that.$refs.imgContainer.style.transition = "1.25s");
       that.mouseOffset.x = that.container.x / 2;
       that.mouseOffset.y = that.container.y / 2;
     }, 4000),
-    mousemoveHandler(e) {
+    handleMousemove(e) {
       if (this.timerId) return;
       if (!this.$refs.container.getBoundingClientRect()) return;
 
@@ -80,7 +80,7 @@ export default {
       let offsetY = Math.abs(e.y - containerRect.y);
 
       // 鼠标停止移动时间超过4秒,将banner复位
-      this.resetBannerHandler(this);
+      this.handleResetBanner(this);
       // 节流
       this.timerId = setTimeout(() => {
         this.mouseOffset.x = offsetX;
@@ -92,7 +92,7 @@ export default {
     resizeHandler() {
       this.writeContainersData();
     },
-    loadedHandler() {
+    handleLoaded() {
       this.isReach && (this.textOpacity = 1);
       this.$refs.title.style.width = this.textWidth.title + "px";
       this.$refs.description.style.width = this.textWidth.description + "px";
