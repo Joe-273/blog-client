@@ -3,7 +3,7 @@
     <Layout :showRight="true" class="layout" v-if="!isLoading">
       <div class="main" ref="mainContainer">
         <BlogDetailContent :blogItem="data" />
-        <BlogComment class="commentArea" v-if="!isLoading" />
+        <BlogComment class="commentArea" v-if="data" />
         <ToTop @totop="handleToTop" />
       </div>
       <template #right>
@@ -23,7 +23,7 @@ import BlogComment from "./components/BlogComment";
 import ToTop from "@/components/ToTop";
 
 export default {
-  mixins: [fetchRemoteData()],
+  mixins: [fetchRemoteData({})],
   components: {
     Layout,
     BlogTOC,

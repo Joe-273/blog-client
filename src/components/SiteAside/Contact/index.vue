@@ -6,7 +6,7 @@
           <Icon :type="item.iconType" />
         </div>
         <div v-if="!!item.imgUrl" class="image">
-          <img :src="item.imgUrl" alt="" />
+          <img ref="imgBox" :src="placeHolderImg" :data-realSrc="item.imgUrl" alt="" />
         </div>
       </a>
     </li>
@@ -15,9 +15,11 @@
 
 <script>
 import Icon from "@/components/Icon";
+import placeHolderImg from "@/assets/defaultLoading.gif";
 export default {
   data() {
     return {
+      placeHolderImg,
       itemArray: [
         {
           iconType: "qq",
@@ -33,13 +35,13 @@ export default {
         },
         {
           iconType: "github",
-          imgUrl: "",
+          imgUrl: "https://picsum.photos/210/200",
           href: "https://github.com/Joe-273?tab=repositories",
         },
         {
           iconType: "email",
           contentText: "Qihaowei.273@Outlook",
-          imgUrl: "",
+          imgUrl: "https://picsum.photos/200/210",
           href: "mailto:Qihaowei.273@Outlook.com",
         },
       ],
@@ -49,9 +51,21 @@ export default {
     Icon,
   },
   methods: {
+    loadRealImage() {
+      for (const item of this.$refs.imgBox) {
+        const realSrc = item.dataset.realsrc;
+        if (realSrc) item.src = realSrc;
+      }
+    },
     handlerClick(e, itemHref) {
       if (!itemHref) e.preventDefault();
     },
+  },
+  mounted() {
+    window.addEventListener("load", this.loadRealImage);
+  },
+  beforeDestroy() {
+    window.removeEventListener("load", this.loadRealImage);
   },
 };
 </script>
@@ -116,6 +130,7 @@ export default {
         .abs-center();
         width: 90%;
         object-fit: cover;
+        background-color: @white;
         .border-style(6px, @gray);
       }
     }
