@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import "@/styles/global.less";
-import Icon, { types } from "./";
+import '@/styles/global.less'
+import Icon, { types } from './'
 export default {
   components: {
     Icon,
@@ -17,9 +17,9 @@ export default {
   data() {
     return {
       types,
-    };
+    }
   },
-};
+}
 </script>
 
 <style scoped>

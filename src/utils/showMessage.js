@@ -1,6 +1,6 @@
-import getComponentRootDom from "./getComponentRootDom";
-import Icon from "@/components/Icon";
-import style from "./showMessage.module.less";
+import getComponentRootDom from './getComponentRootDom'
+import Icon from '@/components/Icon'
+import style from './showMessage.module.less'
 
 /**
  * 弹出对话框
@@ -13,44 +13,44 @@ import style from "./showMessage.module.less";
  * }
  */
 export default function(options = {}) {
-  const content = options.content;
-  const type = options.type || "info";
-  const duration = options.duration || 2000;
-  const container = options.container || document.body;
+  const content = options.content
+  const type = options.type || 'info'
+  const duration = options.duration || 2000
+  const container = options.container || document.body
 
-  const div = document.createElement("div");
+  const div = document.createElement('div')
   const el = getComponentRootDom(Icon, {
     type,
-  });
+  })
 
-  div.innerHTML = `<span>${el.outerHTML}</span><div>${content}</div>`;
+  div.innerHTML = `<span>${el.outerHTML}</span><div>${content}</div>`
   // 设置类样式
-  div.className = `${style.message} ${style[type]}`;
+  div.className = `${style.message} ${style[type]}`
 
   // 加上相对定位
 
-  if (getComputedStyle(container).position === "static") {
-    container !== document.body && (container.style.position = "relative");
+  if (getComputedStyle(container).position === 'static') {
+    container !== document.body && (container.style.position = 'relative')
   }
 
-  container.appendChild(div);
+  container.appendChild(div)
 
   // 强行渲染
-  div.clientHeight;
+  div.clientHeight
   // 回归正常
-  div.style.opacity = 1;
-  div.style.transform = `translate(-50%, -50%)`;
+  div.style.opacity = 1
+  div.style.transform = `translate(-50%, -50%)`
   setTimeout(() => {
-    div.style.opacity = 0;
-    div.style.transform = `translate(-50%, -50%) translateY(-40px)`;
+    div.style.opacity = 0
+    div.style.transform = `translate(-50%, -50%) translateY(-40px)`
     div.addEventListener(
-      "transitionend",
+      'transitionend',
       function() {
-        this.remove();
+        this.remove()
         // 运行回调函数
-        options.callback && options.callback();
+        options.callback && options.callback()
       },
       { once: true }
-    );
-  }, duration);
+    )
+  }, duration)
 }

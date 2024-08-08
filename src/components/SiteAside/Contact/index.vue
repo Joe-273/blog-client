@@ -14,38 +14,38 @@
 </template>
 
 <script>
-import Icon from "@/components/Icon";
-import placeHolderImg from "@/assets/defaultLoading.gif";
+import Icon from '@/components/Icon'
+import placeHolderImg from '@/assets/defaultLoading.gif'
 export default {
   data() {
     return {
       placeHolderImg,
       itemArray: [
         {
-          iconType: "qq",
-          contentText: "1123116289",
-          imgUrl: "",
-          href: "",
+          iconType: 'qq',
+          contentText: '1123116289',
+          imgUrl: '',
+          href: '',
         },
         {
-          iconType: "wechat",
-          contentText: "Joe",
-          imgUrl: "",
-          href: "",
+          iconType: 'wechat',
+          contentText: 'Joe',
+          imgUrl: '',
+          href: '',
         },
         {
-          iconType: "github",
-          imgUrl: "https://picsum.photos/210/200",
-          href: "https://github.com/Joe-273?tab=repositories",
+          iconType: 'github',
+          imgUrl: 'https://picsum.photos/210/200',
+          href: 'https://github.com/Joe-273?tab=repositories',
         },
         {
-          iconType: "email",
-          contentText: "Qihaowei.273@Outlook",
-          imgUrl: "https://picsum.photos/200/210",
-          href: "mailto:Qihaowei.273@Outlook.com",
+          iconType: 'email',
+          contentText: 'Qihaowei.273@Outlook',
+          imgUrl: 'https://picsum.photos/200/210',
+          href: 'mailto:Qihaowei.273@Outlook.com',
         },
       ],
-    };
+    }
   },
   components: {
     Icon,
@@ -53,26 +53,26 @@ export default {
   methods: {
     loadRealImage() {
       for (const item of this.$refs.imgBox) {
-        const realSrc = item.dataset.realsrc;
-        if (realSrc) item.src = realSrc;
+        const realSrc = item.dataset.realsrc
+        if (realSrc) item.src = realSrc
       }
     },
     handlerClick(e, itemHref) {
-      if (!itemHref) e.preventDefault();
+      if (!itemHref) e.preventDefault()
     },
   },
   mounted() {
-    window.addEventListener("load", this.loadRealImage);
+    window.addEventListener('load', this.loadRealImage)
   },
   beforeDestroy() {
-    window.removeEventListener("load", this.loadRealImage);
+    window.removeEventListener('load', this.loadRealImage)
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/common.less";
-@import "~@/styles/var.less";
+@import '~@/styles/common.less';
+@import '~@/styles/var.less';
 @width: 240px;
 .contact-container {
   .flex-center();
@@ -116,7 +116,7 @@ export default {
       background-color: @gray;
       .border-style(8px);
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         top: 100%;
         left: 15%;

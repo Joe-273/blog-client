@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       originImageLoaded: false, // 原图加载完成
-    };
+    }
   },
   props: {
     src: {
@@ -38,33 +38,33 @@ export default {
   methods: {
     handleImageLoad() {
       // 监听到图片加载完成
-      this.originImageLoaded = true;
+      this.originImageLoaded = true
       setTimeout(() => {
-        if (!this.isReach) return;
+        if (!this.isReach) return
         // 图片加载完成时，isReach为true的会发送信号
-        this.$emit("loaded");
-      }, this.duration);
+        this.$emit('loaded')
+      }, this.duration)
     },
     onIsReachChange() {
       // 当isReach变换时，会调用该函数，重新判断是否应该发送信号
-      this.handleImageLoad();
+      this.handleImageLoad()
     },
   },
   computed: {
     originImageOpacity() {
-      return this.originImageLoaded && this.isReach ? 1 : 0;
+      return this.originImageLoaded && this.isReach ? 1 : 0
     },
   },
   watch: {
     isReach() {
-      this.onIsReachChange();
+      this.onIsReachChange()
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/common.less";
+@import '~@/styles/common.less';
 .imageloader-container {
   height: 100%;
   width: 100%;

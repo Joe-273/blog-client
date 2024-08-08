@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import Icon from "@/components/Icon";
-import CarouselImage from "./CarouselImage.vue";
-import { getBanner } from "@/api/banner";
-import fetchRemoteData from "@/mixins/fetchRemoteData.js";
+import Icon from '@/components/Icon'
+import CarouselImage from './CarouselImage.vue'
+import { getBanner } from '@/api/banner'
+import fetchRemoteData from '@/mixins/fetchRemoteData.js'
 
 export default {
   mixins: [fetchRemoteData([])],
@@ -40,55 +40,55 @@ export default {
       currentIndex: 0,
       containerHeight: 0,
       timerId: null,
-    };
+    }
   },
   methods: {
     async fetchData() {
-      return await getBanner();
+      return await getBanner()
     },
     // 跳转banner图
     jumpTo(index) {
-      this.currentIndex = index;
+      this.currentIndex = index
     },
     wheelHandler(e) {
-      if (this.timerId) return;
+      if (this.timerId) return
       if (e.deltaY > 0 && this.currentIndex < this.data.length - 1) {
-        this.currentIndex++;
+        this.currentIndex++
       }
       if (e.deltaY < 0 && this.currentIndex > 0) {
-        this.currentIndex--;
+        this.currentIndex--
       }
       this.timerId = setTimeout(() => {
-        this.timerId = null;
-      }, 400);
+        this.timerId = null
+      }, 400)
     },
     resizeHandler() {
-      this.containerHeight = this.$refs.homeContainer.clientHeight;
+      this.containerHeight = this.$refs.homeContainer.clientHeight
     },
   },
   computed: {
     marginTop() {
-      return -this.currentIndex * this.containerHeight + "px";
+      return -this.currentIndex * this.containerHeight + 'px'
     },
     isReach() {
       return (index) => {
-        return index === this.currentIndex;
-      };
+        return index === this.currentIndex
+      }
     },
   },
   mounted() {
-    window.addEventListener("resize", this.resizeHandler);
-    this.containerHeight = this.$refs.homeContainer.clientHeight;
+    window.addEventListener('resize', this.resizeHandler)
+    this.containerHeight = this.$refs.homeContainer.clientHeight
   },
   destroyed() {
-    window.removeEventListener("resize", this.resizeHandler);
+    window.removeEventListener('resize', this.resizeHandler)
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/common.less";
-@import "~@/styles/var.less";
+@import '~@/styles/common.less';
+@import '~@/styles/var.less';
 @fontSize: 48px;
 @padding: 20px;
 .home-container {

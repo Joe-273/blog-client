@@ -1,46 +1,46 @@
-import Home from "@/views/Home";
-import About from "@/views/About";
-import Blog from "@/views/Blog/Blog.vue";
-import BlogDetail from "@/views/Blog/BlogDetail.vue";
-import LeaveWords from "@/views/LeaveWords";
-import Project from "@/views/Project";
+import Home from '@/views/Home'
+import About from '@/views/About'
+import Blog from '@/views/Blog/Blog.vue'
+import BlogDetail from '@/views/Blog/BlogDetail.vue'
+import LeaveWords from '@/views/LeaveWords'
+import Project from '@/views/Project'
 
 // 路由的匹配规则
 const routes = [
   {
-    name: "Home",
-    path: "/",
+    name: 'Home',
+    path: '/',
     component: Home,
   },
   {
-    name: "About",
-    path: "/about",
+    name: 'About',
+    path: '/about',
     component: About,
   },
   {
-    name: "Blog",
-    path: "/blog",
+    name: 'Blog',
+    path: '/blog',
     component: Blog,
   },
   {
-    name: "BlogCategory",
-    path: "/blog/cate/:categoryId",
+    name: 'BlogCategory',
+    path: '/blog/cate/:categoryId',
     component: Blog,
   },
   {
-    name: "BlogDetail",
-    path: "/blog/detail/:blogId",
+    name: 'BlogDetail',
+    path: '/blog/detail/:blogId',
     component: BlogDetail,
   },
   {
-    name: "LeaveWords",
-    path: "/leavewords",
+    name: 'LeaveWords',
+    path: '/leavewords',
     component: LeaveWords,
   },
   {
-    name: "Project",
-    path: "/project",
+    name: 'Project',
+    path: '/project',
     component: Project,
   },
-];
-export default routes;
+]
+export default routes

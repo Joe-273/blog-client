@@ -17,8 +17,8 @@
 </template>
 
 <style lang="less" scoped>
-@import "~@/styles/common.less";
-@import "~@/styles/var.less";
+@import '~@/styles/common.less';
+@import '~@/styles/var.less';
 .munu-container {
   width: 100%;
   overflow: hidden;
@@ -51,7 +51,7 @@
 </style>
 
 <script>
-import Icon from "@/components/Icon";
+import Icon from '@/components/Icon'
 export default {
   components: {
     Icon,
@@ -60,37 +60,37 @@ export default {
     return {
       menuItemArray: [
         {
-          iconType: "home",
-          text: "首页",
-          routerName: "Home",
+          iconType: 'home',
+          text: '首页',
+          routerName: 'Home',
           exactFilter: true,
         },
         {
-          iconType: "blog",
-          text: "博客",
-          routerName: "Blog",
+          iconType: 'blog',
+          text: '博客',
+          routerName: 'Blog',
           exactFilter: false, //激活样式不需要精确匹配
         },
         {
-          iconType: "about",
-          text: "关于我",
-          routerName: "About",
+          iconType: 'about',
+          text: '关于我',
+          routerName: 'About',
           exactFilter: true,
         },
         {
-          iconType: "code",
-          text: "项目/效果",
-          routerName: "Project",
+          iconType: 'code',
+          text: '项目/效果',
+          routerName: 'Project',
           exactFilter: true,
         },
         {
-          iconType: "leaveWord",
-          text: "留言板",
-          routerName: "LeaveWords",
+          iconType: 'leaveWord',
+          text: '留言板',
+          routerName: 'LeaveWords',
           exactFilter: true,
         },
       ],
-    };
+    }
   },
-};
+}
 </script>

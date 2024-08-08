@@ -48,13 +48,13 @@
 </template>
 
 <script>
-import "@/styles/global.less";
-import Layout from "./";
+import '@/styles/global.less'
+import Layout from './'
 export default {
   components: {
     Layout,
   },
-};
+}
 </script>
 
 <style lang="less" scoped>

@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "RightList",
+  name: 'RightList',
   props: {
     data: {
       type: Array,
@@ -26,16 +26,16 @@ export default {
   methods: {
     clickHandler(item) {
       if (!item.isSelected) {
-        this.$emit("selected", item);
+        this.$emit('selected', item)
       }
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/var.less";
-@import "~@/styles/common.less";
+@import '~@/styles/var.less';
+@import '~@/styles/common.less';
 .right-list-container {
   list-style: none;
   padding: 0;

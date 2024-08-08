@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import Layout from "@/components/Layout";
-import SiteAside from "@/components/SiteAside";
-import { RouterView } from "vue-router";
+import Layout from '@/components/Layout'
+import SiteAside from '@/components/SiteAside'
+import { RouterView } from 'vue-router'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Layout,
     SiteAside,
@@ -27,19 +27,19 @@ export default {
   data() {
     return {
       isClosed: false,
-    };
+    }
   },
   methods: {
     switchHandler(isClosed) {
-      this.isClosed = isClosed;
+      this.isClosed = isClosed
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/common.less";
-@import "~@/styles/var.less";
+@import '~@/styles/common.less';
+@import '~@/styles/var.less';
 #app {
   .self-fill(fixed);
   background-color: @white;

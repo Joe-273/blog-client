@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import "@/styles/global.less";
-import LeaveWordsArea from "./";
+import '@/styles/global.less'
+import LeaveWordsArea from './'
 export default {
   components: {
     LeaveWordsArea,
   },
-};
+}
 </script>
 
 <style lang="less" scoped>

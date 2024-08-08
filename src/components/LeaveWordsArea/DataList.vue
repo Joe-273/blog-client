@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import Avatar from "@/components/Avatar";
-import Icon from "@/components/Icon";
-import { formatDate } from "@/utils/";
+import Avatar from '@/components/Avatar'
+import Icon from '@/components/Icon'
+import { formatDate } from '@/utils/'
 // import imgurl from "@/assets/404AM.png";
 export default {
   components: {
@@ -37,12 +37,12 @@ export default {
       default: () => [],
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/var.less";
-@import "~@/styles/common.less";
+@import '~@/styles/var.less';
+@import '~@/styles/common.less';
 .datalist-container {
   .commentItem {
     display: flex;

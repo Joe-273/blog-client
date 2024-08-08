@@ -10,11 +10,11 @@ export default function(defaultValue = null) {
       return {
         isLoading: true,
         data: defaultValue,
-      };
+      }
     },
     async created() {
-      this.data = await this.fetchData();
-      this.isLoading = false;
+      this.data = await this.fetchData()
+      this.isLoading = false
     },
-  };
+  }
 }

@@ -6,13 +6,13 @@
     </h3>
     <DataForm v-on="$listeners" />
     <DataList :list="list" />
-    <div class="loading" v-loading="isListLoading">{{ getEnd ? "噢~到底咯O(∩_∩)O~" : "" }}</div>
+    <div class="loading" v-loading="isListLoading">{{ getEnd ? '噢~到底咯O(∩_∩)O~' : '' }}</div>
   </div>
 </template>
 
 <script>
-import DataForm from "./DataForm.vue";
-import DataList from "./DataList.vue";
+import DataForm from './DataForm.vue'
+import DataList from './DataList.vue'
 export default {
   components: {
     DataForm,
@@ -22,12 +22,12 @@ export default {
     title: {
       type: String,
       required: false,
-      default: "",
+      default: '',
     },
     subTitle: {
       type: String,
       required: false,
-      default: "",
+      default: '',
     },
     list: {
       type: Array,
@@ -45,12 +45,12 @@ export default {
       default: false,
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/var.less";
-@import "~@/styles/common.less";
+@import '~@/styles/var.less';
+@import '~@/styles/common.less';
 .leave-words-area-container {
   h3 {
     margin: 15px 0;

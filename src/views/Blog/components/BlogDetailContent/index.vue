@@ -32,10 +32,10 @@
 </template>
 
 <script>
-import { formatDate } from "@/utils";
-import "highlight.js/styles/github.css";
-import "@/styles/markdown.css";
-import Icon from "@/components/Icon";
+import { formatDate } from '@/utils'
+import 'highlight.js/styles/github.css'
+import '@/styles/markdown.css'
+import Icon from '@/components/Icon'
 export default {
   components: {
     Icon,
@@ -49,12 +49,12 @@ export default {
   methods: {
     formatDate,
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/var.less";
-@import "~@/styles/common.less";
+@import '~@/styles/var.less';
+@import '~@/styles/common.less';
 .blog-detail-content-container {
   padding-top: 40px;
   h1 {

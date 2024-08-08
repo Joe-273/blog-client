@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import RightList from "../RightList";
-import { throttle } from "@/utils";
+import RightList from '../RightList'
+import { throttle } from '@/utils'
 export default {
   components: {
     RightList,
@@ -24,31 +24,31 @@ export default {
   data() {
     return {
       // 这个数据表示选中的锚点
-      activeAnchor: "",
-    };
+      activeAnchor: '',
+    }
   },
   methods: {
     // 设置data中activeAnchor的值为正确的值
     setSelect(container) {
-      const range = 120;
-      this.activeAnchor = "";
+      const range = 120
+      this.activeAnchor = ''
       for (const dom of this.doms) {
-        if (!dom) continue;
+        if (!dom) continue
         // dom一定存在：
         // 得到元素距离container顶部的距离
-        const top = dom.getBoundingClientRect().top - container.getBoundingClientRect().top;
+        const top = dom.getBoundingClientRect().top - container.getBoundingClientRect().top
         if (top >= 0 && top <= range) {
-          this.activeAnchor = dom.id;
+          this.activeAnchor = dom.id
         } else if (top > range) {
-          return;
+          return
         } else {
-          this.activeAnchor = dom.id;
+          this.activeAnchor = dom.id
         }
       }
     },
     selectedHandler(item) {
-      location.hash = "";
-      location.hash = item.anchor;
+      location.hash = ''
+      location.hash = item.anchor
     },
   },
   computed: {
@@ -59,36 +59,36 @@ export default {
           ...i,
           isSelected: i.anchor === this.activeAnchor,
           children: getTOC(i.children),
-        }));
-      };
-      return getTOC(this.toc);
+        }))
+      }
+      return getTOC(this.toc)
     },
     // 获取目录对应的dom元素
     doms() {
-      const doms = [];
+      const doms = []
       const addToDoms = (toc) => {
         for (const i of toc) {
-          doms.push(document.getElementById(i.anchor));
-          i.children && i.children.length && addToDoms(i.children);
+          doms.push(document.getElementById(i.anchor))
+          i.children && i.children.length && addToDoms(i.children)
         }
-        return doms;
-      };
-      return addToDoms(this.toc);
+        return doms
+      }
+      return addToDoms(this.toc)
     },
   },
   created() {
-    this.setSelectThrottle = throttle(this.setSelect, 50);
-    this.$bus.$on("mainScroll", this.setSelectThrottle);
+    this.setSelectThrottle = throttle(this.setSelect, 50)
+    this.$bus.$on('mainScroll', this.setSelectThrottle)
   },
   beforeDestroy() {
-    this.$bus.$off("mainScroll", this.setSelectThrottle);
+    this.$bus.$off('mainScroll', this.setSelectThrottle)
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/var.less";
-@import "~@/styles/common.less";
+@import '~@/styles/var.less';
+@import '~@/styles/common.less';
 .blog-TOC-container {
   @padding: 20px;
   width: 100%;
