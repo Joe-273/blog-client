@@ -21,11 +21,11 @@ export default {
       default: 150,
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/var.less";
+@import '~@/styles/var.less';
 .avatar-container {
   object-fit: cover;
   border-radius: 50%;

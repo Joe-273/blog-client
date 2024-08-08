@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import fetchRemoteData from "@/mixins/fetchRemoteData.js";
-import { getBlogDetail } from "@/api/blog";
-import Layout from "@/components/Layout";
-import BlogTOC from "./components/BlogTOC";
-import BlogDetailContent from "./components/BlogDetailContent";
-import BlogComment from "./components/BlogComment";
-import ToTop from "@/components/ToTop";
+import fetchRemoteData from '@/mixins/fetchRemoteData.js'
+import { getBlogDetail } from '@/api/blog'
+import Layout from '@/components/Layout'
+import BlogTOC from './components/BlogTOC'
+import BlogDetailContent from './components/BlogDetailContent'
+import BlogComment from './components/BlogComment'
+import ToTop from '@/components/ToTop'
 
 export default {
   mixins: [fetchRemoteData({})],
@@ -33,32 +33,32 @@ export default {
   },
   methods: {
     handleToTop() {
-      this.$refs.mainContainer.scrollTop = 0;
+      this.$refs.mainContainer.scrollTop = 0
     },
     async fetchData() {
-      return await getBlogDetail(this.$route.params.blogId);
+      return await getBlogDetail(this.$route.params.blogId)
     },
     handleScroll() {
-      this.$bus.$emit("mainScroll", this.$refs.mainContainer);
+      this.$bus.$emit('mainScroll', this.$refs.mainContainer)
     },
   },
   updated() {
-    this.$refs.mainContainer && this.$refs.mainContainer.addEventListener("scroll", this.handleScroll);
-    const hash = location.hash;
-    location.hash = "";
+    this.$refs.mainContainer && this.$refs.mainContainer.addEventListener('scroll', this.handleScroll)
+    const hash = location.hash
+    location.hash = ''
     setTimeout(() => {
-      location.hash = hash;
-    }, 50);
+      location.hash = hash
+    }, 50)
   },
   beforeDestroy() {
-    this.$refs.mainContainer.removeEventListener("scroll", this.handleScroll);
+    this.$refs.mainContainer.removeEventListener('scroll', this.handleScroll)
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/var.less";
-@import "~@/styles/common.less";
+@import '~@/styles/var.less';
+@import '~@/styles/common.less';
 .blog-detail-container {
   position: relative;
   height: 100%;

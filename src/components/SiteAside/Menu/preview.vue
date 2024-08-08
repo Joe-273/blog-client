@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import "@/styles/global.less";
-import Menu from "./";
+import '@/styles/global.less'
+import Menu from './'
 export default {
   components: {
     Menu,
   },
-};
+}
 </script>
 
 <style lang="less" scoped>

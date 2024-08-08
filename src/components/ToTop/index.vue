@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       show: false,
-    };
+    }
   },
   props: {
     right: {
@@ -22,27 +22,27 @@ export default {
   },
   methods: {
     handleClick() {
-      this.$emit("totop");
+      this.$emit('totop')
     },
     handleScroll(dom) {
-      this.show = false;
+      this.show = false
       if (dom.scrollTop >= dom.clientHeight) {
-        this.show = true;
+        this.show = true
       }
     },
   },
   created() {
-    this.$bus.$on("mainScroll", this.handleScroll);
+    this.$bus.$on('mainScroll', this.handleScroll)
   },
   beforeDestroy() {
-    this.$bus.$off("mainScroll", this.handleScroll);
+    this.$bus.$off('mainScroll', this.handleScroll)
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/var.less";
-@import "~@/styles/common.less";
+@import '~@/styles/var.less';
+@import '~@/styles/common.less';
 @r: 50px;
 .to-top-container {
   transition: 0.25s;

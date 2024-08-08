@@ -5,18 +5,18 @@
 </template>
 
 <script>
-import "@/styles/global.less";
+import '@/styles/global.less'
 
-import Contact from "./";
+import Contact from './'
 export default {
   components: {
     Contact,
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/common.less";
+@import '~@/styles/common.less';
 .test-container {
   margin: 100px;
   display: inline-block;

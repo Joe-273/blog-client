@@ -1,10 +1,10 @@
 export default (fn, delay) => {
-  let timerId;
+  let timerId
   return (...arg) => {
-    if (timerId) return;
+    if (timerId) return
     timerId = setTimeout(() => {
-      fn(...arg);
-      timerId = null;
-    }, delay);
-  };
-};
+      fn(...arg)
+      timerId = null
+    }, delay)
+  }
+}

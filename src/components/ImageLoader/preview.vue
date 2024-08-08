@@ -9,18 +9,18 @@
 </template>
 
 <script>
-import "@/styles/global.less";
-import ImageLoader from "./";
+import '@/styles/global.less'
+import ImageLoader from './'
 export default {
   components: {
     ImageLoader,
   },
   methods: {
     handlerLoaded() {
-      console.log("图片初始化结束!");
+      console.log('图片初始化结束!')
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>

@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import Icon from "@/components/Icon";
+import Icon from '@/components/Icon'
 
 export default {
   components: {
@@ -77,75 +77,75 @@ export default {
       isLeftClosed: false,
       isRightClosed: false,
       timerId: null,
-    };
+    }
   },
   methods: {
     openAsideBar(side) {
-      if (side === "left") {
-        this.leftWidth = 280;
-        this.isLeftClosed = false;
-      } else if (side === "right") {
-        this.rightWidth = 280;
-        this.isRightClosed = false;
+      if (side === 'left') {
+        this.leftWidth = 280
+        this.isLeftClosed = false
+      } else if (side === 'right') {
+        this.rightWidth = 280
+        this.isRightClosed = false
       }
     },
     startResizing(side) {
       // 拖拽过程中防止选中文本
-      event.preventDefault();
+      event.preventDefault()
       // 改变鼠标手势
-      document.body.style.cursor = "e-resize";
+      document.body.style.cursor = 'e-resize'
 
-      this.isResizing = true;
-      this.activeResizer = side;
-      this.startX = event.clientX;
-      this.startWidth = side === "left" ? this.leftWidth : this.rightWidth;
-      document.addEventListener("mousemove", this.resize);
-      document.addEventListener("mouseup", this.stopResizing);
+      this.isResizing = true
+      this.activeResizer = side
+      this.startX = event.clientX
+      this.startWidth = side === 'left' ? this.leftWidth : this.rightWidth
+      document.addEventListener('mousemove', this.resize)
+      document.addEventListener('mouseup', this.stopResizing)
     },
     initWidth(asideWidthData, asideClosedFlag) {
       if (asideWidthData < 160) {
-        asideWidthData = 0;
-        asideClosedFlag = true;
-        this.stopResizing();
+        asideWidthData = 0
+        asideClosedFlag = true
+        this.stopResizing()
       }
     },
     resize(event) {
-      if (!this.isResizing) return;
-      if (this.timerId) return;
-      console.log("object");
+      if (!this.isResizing) return
+      if (this.timerId) return
+      console.log('object')
       this.timerId = setTimeout(() => {
-        const dx = event.clientX - this.startX;
-        if (this.activeResizer === "left") {
-          this.leftWidth = this.startWidth + dx;
+        const dx = event.clientX - this.startX
+        if (this.activeResizer === 'left') {
+          this.leftWidth = this.startWidth + dx
           if (this.leftWidth < 160) {
-            this.leftWidth = 0;
-            this.isLeftClosed = true;
-            this.stopResizing();
+            this.leftWidth = 0
+            this.isLeftClosed = true
+            this.stopResizing()
           }
-        } else if (this.activeResizer === "right") {
-          this.rightWidth = this.startWidth - dx;
+        } else if (this.activeResizer === 'right') {
+          this.rightWidth = this.startWidth - dx
           if (this.rightWidth < 160) {
-            this.rightWidth = 0;
-            this.isRightClosed = true;
-            this.stopResizing();
+            this.rightWidth = 0
+            this.isRightClosed = true
+            this.stopResizing()
           }
         }
-        this.timerId = null;
-      }, 10);
+        this.timerId = null
+      }, 10)
     },
     stopResizing() {
-      this.isResizing = false;
-      document.body.style.cursor = "auto";
-      document.removeEventListener("mousemove", this.resize);
-      document.removeEventListener("mouseup", this.stopResizing);
+      this.isResizing = false
+      document.body.style.cursor = 'auto'
+      document.removeEventListener('mousemove', this.resize)
+      document.removeEventListener('mouseup', this.stopResizing)
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/var.less";
-@import "~@/styles/common.less";
+@import '~@/styles/var.less';
+@import '~@/styles/common.less';
 @color: darken(@white, 30%);
 
 .layout-container {

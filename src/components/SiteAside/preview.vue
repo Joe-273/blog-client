@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import "@/styles/global.less";
-import SiteAside from "./";
+import '@/styles/global.less'
+import SiteAside from './'
 export default {
   components: {
     SiteAside,
   },
-};
+}
 </script>
 
 <style lang="less" scoped>

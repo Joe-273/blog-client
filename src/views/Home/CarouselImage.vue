@@ -15,13 +15,13 @@
 </template>
 
 <script>
-import ImageLoader from "@/components/ImageLoader";
-import { debounce } from "@/utils";
+import ImageLoader from '@/components/ImageLoader'
+import { debounce } from '@/utils'
 export default {
   components: {
     ImageLoader,
   },
-  props: ["item", "isReach"],
+  props: ['item', 'isReach'],
   data() {
     return {
       container: null,
@@ -37,7 +37,7 @@ export default {
         title: 0,
         description: 0,
       },
-    };
+    }
   },
   methods: {
     writeContainersData() {
@@ -46,104 +46,104 @@ export default {
       this.container = {
         x: this.$refs.container.clientWidth,
         y: this.$refs.container.clientHeight,
-      };
+      }
 
-      this.mouseOffset.x = this.container.x / 2;
-      this.mouseOffset.y = this.container.y / 2;
+      this.mouseOffset.x = this.container.x / 2
+      this.mouseOffset.y = this.container.y / 2
 
       this.imgContainer = {
         x: this.$refs.imgContainer.clientWidth,
         y: this.$refs.imgContainer.clientHeight,
-      };
+      }
       this.maxOffset = {
         x: this.imgContainer.x - this.container.x,
         y: this.imgContainer.y - this.container.y,
-      };
+      }
     },
     // 将banner恢复到中间位置
     handleResetBanner: debounce((that) => {
-      that.$refs.imgContainer && (that.$refs.imgContainer.style.transition = "1.25s");
-      that.mouseOffset.x = that.container.x / 2;
-      that.mouseOffset.y = that.container.y / 2;
+      that.$refs.imgContainer && (that.$refs.imgContainer.style.transition = '1.25s')
+      that.mouseOffset.x = that.container.x / 2
+      that.mouseOffset.y = that.container.y / 2
     }, 4000),
     handleMousemove(e) {
-      if (this.timerId) return;
-      if (!this.$refs.container.getBoundingClientRect()) return;
+      if (this.timerId) return
+      if (!this.$refs.container.getBoundingClientRect()) return
 
-      if (this.$refs.imgContainer.style.transition !== "0.25s") {
-        this.$refs.imgContainer.style.transition = "0.25s";
+      if (this.$refs.imgContainer.style.transition !== '0.25s') {
+        this.$refs.imgContainer.style.transition = '0.25s'
       }
 
-      const containerRect = this.$refs.container.getBoundingClientRect();
+      const containerRect = this.$refs.container.getBoundingClientRect()
       // 某些奇怪的原因,导致offset有小概率为负值
-      let offsetX = Math.abs(e.x - containerRect.x);
-      let offsetY = Math.abs(e.y - containerRect.y);
+      let offsetX = Math.abs(e.x - containerRect.x)
+      let offsetY = Math.abs(e.y - containerRect.y)
 
       // 鼠标停止移动时间超过4秒,将banner复位
-      this.handleResetBanner(this);
+      this.handleResetBanner(this)
       // 节流
       this.timerId = setTimeout(() => {
-        this.mouseOffset.x = offsetX;
-        this.mouseOffset.y = offsetY;
-        this.timerId = null;
-      }, 40);
+        this.mouseOffset.x = offsetX
+        this.mouseOffset.y = offsetY
+        this.timerId = null
+      }, 40)
     },
 
     resizeHandler() {
-      this.writeContainersData();
+      this.writeContainersData()
     },
     handleLoaded() {
-      this.isReach && (this.textOpacity = 1);
-      this.$refs.title.style.width = this.textWidth.title + "px";
-      this.$refs.description.style.width = this.textWidth.description + "px";
+      this.isReach && (this.textOpacity = 1)
+      this.$refs.title.style.width = this.textWidth.title + 'px'
+      this.$refs.description.style.width = this.textWidth.description + 'px'
     },
     // 当isReach发生改变，调用以下函数
     onIsReachChange() {
       if (!this.isReach) {
-        this.textOpacity = 0;
-        this.$refs.title.style.width = 0;
-        this.$refs.description.style.width = 0;
+        this.textOpacity = 0
+        this.$refs.title.style.width = 0
+        this.$refs.description.style.width = 0
       }
     },
     initTextStatus() {
-      this.textWidth.title = this.$refs.title.clientWidth;
-      this.textWidth.description = this.$refs.description.clientWidth;
-      this.$refs.title.style.width = 0;
-      this.$refs.description.style.width = 0;
+      this.textWidth.title = this.$refs.title.clientWidth
+      this.textWidth.description = this.$refs.description.clientWidth
+      this.$refs.title.style.width = 0
+      this.$refs.description.style.width = 0
     },
   },
 
   computed: {
     finalOffset() {
-      if (!this.imgContainer && !this.container) return;
-      let finalOffsetX = (this.maxOffset.x / this.container.x) * this.mouseOffset.x;
-      let finalOffsetY = (this.maxOffset.y / this.container.y) * this.mouseOffset.y;
-      return { transform: `translate(${-finalOffsetX}px,${-finalOffsetY}px)` };
+      if (!this.imgContainer && !this.container) return
+      let finalOffsetX = (this.maxOffset.x / this.container.x) * this.mouseOffset.x
+      let finalOffsetY = (this.maxOffset.y / this.container.y) * this.mouseOffset.y
+      return { transform: `translate(${-finalOffsetX}px,${-finalOffsetY}px)` }
     },
   },
   watch: {
     isReach() {
-      this.onIsReachChange();
+      this.onIsReachChange()
     },
   },
   mounted() {
     // 将$refs中的两个容器的宽高写入组件的data中
-    this.writeContainersData();
+    this.writeContainersData()
     // 监听浏览器窗口大小变换
-    window.addEventListener("resize", this.resizeHandler);
+    window.addEventListener('resize', this.resizeHandler)
     // 获取文本的宽度
-    this.initTextStatus();
+    this.initTextStatus()
     // 居中Banner图片
   },
   destroyed() {
-    window.removeEventListener("resize", this.resizeHandler);
+    window.removeEventListener('resize', this.resizeHandler)
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/var.less";
-@import "~@/styles/common.less";
+@import '~@/styles/var.less';
+@import '~@/styles/common.less';
 .carousel-container {
   width: 100%;
   height: 100%;

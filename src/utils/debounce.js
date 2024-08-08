@@ -1,9 +1,9 @@
 export default (fn, delay) => {
-  let timerId;
+  let timerId
   return (...arg) => {
-    clearTimeout(timerId);
+    clearTimeout(timerId)
     timerId = setTimeout(() => {
-      fn(...arg);
-    }, delay);
-  };
-};
+      fn(...arg)
+    }, delay)
+  }
+}

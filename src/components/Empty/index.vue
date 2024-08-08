@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Icon from "../Icon";
+import Icon from '../Icon'
 export default {
   components: {
     Icon,
@@ -14,15 +14,15 @@ export default {
   props: {
     text: {
       type: String,
-      default: "无数据",
+      default: '无数据',
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/common.less";
-@import "~@/styles/var.less";
+@import '~@/styles/common.less';
+@import '~@/styles/var.less';
 .empty-container {
   color: @words;
   font-size: 60px;

@@ -71,11 +71,11 @@
 </template>
 
 <script>
-import Pager from "@/components/Pager";
-import fetchRemoteData from "@/mixins/fetchRemoteData.js";
-import { getBlogs } from "@/api/blog";
-import { formatDate } from "@/utils";
-import Icon from "@/components/Icon";
+import Pager from '@/components/Pager'
+import fetchRemoteData from '@/mixins/fetchRemoteData.js'
+import { getBlogs } from '@/api/blog'
+import { formatDate } from '@/utils'
+import Icon from '@/components/Icon'
 
 export default {
   mixins: [fetchRemoteData({})],
@@ -86,58 +86,58 @@ export default {
   methods: {
     formatDate,
     async fetchData() {
-      return await getBlogs(this.routeInfo.page, this.routeInfo.limit, this.routeInfo.categoryId);
+      return await getBlogs(this.routeInfo.page, this.routeInfo.limit, this.routeInfo.categoryId)
     },
     pageChangedHandler(newPage) {
       const query = {
         page: newPage,
         limit: this.routeInfo.limit,
-      };
+      }
       if (this.routeInfo.categoryId === -1) {
         // 当前所在分类为全部的情况
         this.$router.push({
-          name: "Blog",
+          name: 'Blog',
           query,
-        });
+        })
       } else {
         // 当前分类处于有分类的页面
         this.$router.push({
-          name: "BlogCategory",
+          name: 'BlogCategory',
           query,
           params: {
             categoryId: this.routeInfo.categoryId,
           },
-        });
+        })
       }
     },
   },
   watch: {
     $route: {
       async handler() {
-        this.isLoading = true;
-        this.data = await this.fetchData();
-        this.isLoading = false;
+        this.isLoading = true
+        this.data = await this.fetchData()
+        this.isLoading = false
       },
     },
   },
   computed: {
     routeInfo() {
-      const categoryId = +this.$route.params.categoryId || -1;
-      const page = +this.$route.query.page || 1;
-      const limit = +this.$route.query.limit || 10;
+      const categoryId = +this.$route.params.categoryId || -1
+      const page = +this.$route.query.page || 1
+      const limit = +this.$route.query.limit || 10
       return {
         categoryId,
         page,
         limit,
-      };
+      }
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/var.less";
-@import "~@/styles/common.less";
+@import '~@/styles/var.less';
+@import '~@/styles/common.less';
 .blog-profile-list-container {
   padding-top: 40px;
   ul {

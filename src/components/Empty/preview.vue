@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import "@/styles/global.less";
-import Empty from "./";
+import '@/styles/global.less'
+import Empty from './'
 export default {
   components: {
     Empty,
   },
-};
+}
 </script>
 
 <style lang="less" scoped>

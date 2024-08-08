@@ -30,7 +30,7 @@
         <span class="tip">{{ formData.nickName.length }}/10</span>
       </div>
       <div @click.prevent="handleSubmit" class="formArea submit " :class="{ disabled: isSubmiting }">
-        <button>{{ isSubmiting ? "发布中..." : "发布" }}</button>
+        <button>{{ isSubmiting ? '发布中...' : '发布' }}</button>
       </div>
     </div>
   </form>
@@ -43,15 +43,15 @@ export default {
       isTextAreaFocus: false,
       isInputFocus: false,
       formData: {
-        nickName: "",
-        content: "",
+        nickName: '',
+        content: '',
       },
       error: {
-        nickName: "",
-        content: "",
+        nickName: '',
+        content: '',
       },
       isSubmiting: false,
-    };
+    }
   },
   methods: {
     // 修改textarea回车行为
@@ -61,52 +61,52 @@ export default {
         // 检查是否同时按下了Shift键
         if (!event.shiftKey) {
           // 阻止默认行为，即阻止换行
-          event.preventDefault();
-          this.handleSubmit();
+          event.preventDefault()
+          this.handleSubmit()
         }
         // 如果是Shift+Enter，不执行任何操作，允许换行
       }
     },
     // 提交表单函数
     handleSubmit(e) {
-      this.error.nickName = this.formData.nickName ? "" : "要不先填一个昵称吧？";
-      this.error.content = this.formData.content ? "" : "你在评论的时候忘记评论内容啦！";
+      this.error.nickName = this.formData.nickName ? '' : '要不先填一个昵称吧？'
+      this.error.content = this.formData.content ? '' : '你在评论的时候忘记评论内容啦！'
       if (!this.formData.nickName || !this.formData.content) {
-        return;
+        return
       }
       // 提交表单
-      this.isSubmiting = true;
-      this.$emit("submit", this.formData, (message) => {
-        this.isSubmiting = false;
-        this.formData.nickName = "";
-        this.formData.content = "";
+      this.isSubmiting = true
+      this.$emit('submit', this.formData, (message) => {
+        this.isSubmiting = false
+        this.formData.nickName = ''
+        this.formData.content = ''
         this.$showMessage({
           content: message,
-          type: "success",
+          type: 'success',
           container: this.$refs.formContainer,
           duration: 1000,
-        });
-      });
+        })
+      })
     },
     handleInput(e) {
-      const textarea = e.target;
-      textarea.style.height = "auto";
-      textarea.style.height = textarea.scrollHeight + "px";
+      const textarea = e.target
+      textarea.style.height = 'auto'
+      textarea.style.height = textarea.scrollHeight + 'px'
     },
     handleFocus(e, type) {
-      this[`is${type}Focus`] = true;
+      this[`is${type}Focus`] = true
     },
     handleBlur(e, type) {
-      if (e.target.value) return;
-      this[`is${type}Focus`] = false;
+      if (e.target.value) return
+      this[`is${type}Focus`] = false
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/var.less";
-@import "~@/styles/common.less";
+@import '~@/styles/var.less';
+@import '~@/styles/common.less';
 @bottomGap: 30px;
 .data-form-container {
   padding: 15px;
@@ -188,7 +188,7 @@ export default {
     textarea {
       cursor: inherit;
       color: inherit;
-      font-family: "等线";
+      font-family: '等线';
       font-size: 16px;
       flex: 1;
       line-height: 20px;

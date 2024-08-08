@@ -42,30 +42,30 @@ export default {
   },
   methods: {
     handlerClick(newPage) {
-      if (newPage === this.current) return;
+      if (newPage === this.current) return
       // 发送页面跳转信号
-      this.$emit("pageChanged", newPage);
+      this.$emit('pageChanged', newPage)
     },
   },
   computed: {
     totalPageNumber() {
-      return Math.ceil(this.total / this.visibleNumber);
+      return Math.ceil(this.total / this.visibleNumber)
     },
     PageArray() {
-      let min = this.current - Math.floor(this.visibleNumber / 2);
-      min < 1 && (min = 1);
+      let min = this.current - Math.floor(this.visibleNumber / 2)
+      min < 1 && (min = 1)
       min > this.totalPageNumber - (this.visibleNumber - 1) &&
-        (min = this.totalPageNumber - (this.visibleNumber - 1));
-      let pageArray = new Array(this.visibleNumber).fill(0).map(() => min++);
-      return pageArray;
+        (min = this.totalPageNumber - (this.visibleNumber - 1))
+      let pageArray = new Array(this.visibleNumber).fill(0).map(() => min++)
+      return pageArray
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/var.less";
-@import "~@/styles/common.less";
+@import '~@/styles/var.less';
+@import '~@/styles/common.less';
 .pager-container {
   height: 80px;
   .flex-center();

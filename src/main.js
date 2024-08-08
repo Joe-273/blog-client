@@ -1,17 +1,17 @@
-import "./mock"; // 模拟数据
-import Vue from "vue";
-import App from "./App.vue";
-import "./styles/global.less"; // 全局样式
-import router from "./router"; // 使用路由
+import './mock' // 模拟数据
+import Vue from 'vue'
+import App from './App.vue'
+import './styles/global.less' // 全局样式
+import router from './router' // 使用路由
 
-import { showMessage } from "./utils"; // 消息弹框插件
-Vue.prototype.$showMessage = showMessage;
+import { showMessage } from './utils' // 消息弹框插件
+Vue.prototype.$showMessage = showMessage
 
-import vLoading from "./directives/loading";
-Vue.directive("loading", vLoading);
+import vLoading from './directives/loading'
+Vue.directive('loading', vLoading)
 
-import vLazyLoad from "./directives/lazyload";
-Vue.directive("lazyload", vLazyLoad);
+import vLazyLoad from './directives/lazyload'
+Vue.directive('lazyload', vLazyLoad)
 
 // 事件总线
 /**
@@ -20,9 +20,9 @@ Vue.directive("lazyload", vLazyLoad);
  * 参数：
  * - 滚动条的dom元素
  */
-Vue.prototype.$bus = new Vue({});
+Vue.prototype.$bus = new Vue({})
 
 new Vue({
   router, // 在实例中使用路由
   render: (h) => h(App),
-}).$mount("#app");
+}).$mount('#app')

@@ -1,83 +1,83 @@
-import Mock from "mockjs";
-import qs from "querystring";
+import Mock from 'mockjs'
+import qs from 'querystring'
 
 // 博客分类
-Mock.mock("/api/blogtype", "get", {
+Mock.mock('/api/blogtype', 'get', {
   code: 0,
-  msg: "",
-  "data|10-30": [
+  msg: '',
+  'data|10-30': [
     {
-      "id|+1": 0,
-      name: "分类@id",
-      "blogCount|0-300": 0,
-      "order|+1": 1,
+      'id|+1': 0,
+      name: '分类@id',
+      'blogCount|0-300': 0,
+      'order|+1': 1,
     },
   ],
-});
+})
 
 // 博客列表
-Mock.mock(/^\/api\/blog(\?.+)?$/, "get", function(options) {
-  const query = qs.parse(options.url.split("?")[1]);
-  const limit = query.limit || 1;
+Mock.mock(/^\/api\/blog(\?.+)?$/, 'get', function(options) {
+  const query = qs.parse(options.url.split('?')[1])
+  const limit = query.limit || 1
 
   return Mock.mock({
     code: 0,
-    msg: "",
+    msg: '',
     data: {
-      "total|2000-3000": 0,
+      'total|2000-3000': 0,
       rows: Array.from({ length: limit }, () => ({
-        id: "@guid",
-        title: "@ctitle(5,12)",
-        description: "@cparagraph(1,12)",
+        id: '@guid',
+        title: '@ctitle(5,12)',
+        description: '@cparagraph(1,12)',
         category: {
-          "id|1-20": 0,
-          name: "分类@id",
+          'id|1-20': 0,
+          name: '分类@id',
         },
-        "scanNumber|0-5000": 0,
-        "commentNumber|0-500": 0,
-        "thumb|1": ["https://picsum.photos/id/@natural(500, 1000)/300/200", null],
-        createDate: "@natural(1609459200000, " + Date.now() + ")",
+        'scanNumber|0-5000': 0,
+        'commentNumber|0-500': 0,
+        'thumb|1': ['https://picsum.photos/id/@natural(500, 1000)/300/200', null],
+        createDate: '@natural(1609459200000, ' + Date.now() + ')',
       })),
     },
-  });
-});
+  })
+})
 
 // 单个博客详情
-Mock.mock(/^\/api\/blog\/detail\/[^\/]+$/, "get", {
+Mock.mock(/^\/api\/blog\/detail\/[^\/]+$/, 'get', {
   code: 0,
-  msg: "",
+  msg: '',
   data: {
-    id: "1",
-    title: "CORS跨域方案详解",
+    id: '1',
+    title: 'CORS跨域方案详解',
     category: {
-      "id|1-10": 1,
-      name: "分类@id",
+      'id|1-10': 1,
+      name: '分类@id',
     },
-    description: "@cparagraph(1, 10)",
-    "scanNumber|0-10000": 0,
-    "commentNumber|0-100": 0,
+    description: '@cparagraph(1, 10)',
+    'scanNumber|0-10000': 0,
+    'commentNumber|0-100': 0,
     createDate: "@date('T')",
     toc: [
-      { name: "概述", anchor: "article-md-title-1" },
+      { name: '概述', anchor: 'article-md-title-1' },
       {
-        name: "简单请求",
-        anchor: "article-md-title-2",
+        name: '简单请求',
+        anchor: 'article-md-title-2',
         children: [
-          { name: "简单请求的判定", anchor: "article-md-title-3" },
-          { name: "简单请求的交互规范", anchor: "article-md-title-4" },
+          { name: '简单请求的判定', anchor: 'article-md-title-3' },
+          { name: '简单请求的交互规范', anchor: 'article-md-title-4' },
         ],
       },
       {
-        name: "需要预检的请求",
-        anchor: "article-md-title-5",
+        name: '需要预检的请求',
+        anchor: 'article-md-title-5',
       },
       {
-        name: "附带身份凭证的请求",
-        anchor: "article-md-title-6",
+        name: '附带身份凭证的请求',
+        anchor: 'article-md-title-6',
       },
       {
-        name: "一个额外的补充",
-        anchor: "article-md-title-7",
+        name: '一个额外的补充',
+        anchor: 'article-md-title-7',
       },
     ],
     htmlContent: `<blockquote>
@@ -269,57 +269,57 @@ Mock.mock(/^\/api\/blog\/detail\/[^\/]+$/, "get", {
   })</code></pre>
   <p>这样一来，该跨域的ajax请求就是一个<em>附带身份凭证的请求</em></p><p>当一个请求需要附带cookie时，无论它是简单请求，还是预检请求，都会在请求头中添加<code>cookie</code>字段</p><p>而服务器响应时，需要明确告知客户端：服务器允许这样的凭据</p><p>告知的方式也非常的简单，只需要在响应头中添加：<code>Access-Control-Allow-Credentials: true</code>即可</p><p>对于一个附带身份凭证的请求，若服务器没有明确告知，浏览器仍然视为跨域被拒绝。</p><p>另外要特别注意的是：<strong>对于附带身份凭证的请求，服务器不得设置 <code>Access-Control-Allow-Origin 的值为*</code></strong>。这就是为什么不推荐使用*的原因</p><h1 id="article-md-title-7">一个额外的补充</h1><p>在跨域访问时，JS只能拿到一些最基本的响应头，如：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma，如果要访问其他头，则需要服务器设置本响应头。</p><p><code>Access-Control-Expose-Headers</code>头让服务器把允许浏览器访问的头放入白名单，例如：</p><pre><code>Access-Control-Expose-Headers: authorization, a, b</code></pre><p>这样JS就能够访问指定的响应头了。</p>`,
   },
-  thumb: "https://picsum.photos/id/@natural(500, 1000)/300/200",
-});
+  thumb: 'https://picsum.photos/id/@natural(500, 1000)/300/200',
+})
 
 // 提交评论
-Mock.mock("/api/comment", "post", {
+Mock.mock('/api/comment', 'post', {
   code: 0,
-  msg: "",
+  msg: '',
   data: {
-    "id|0-520": 0,
-    nickname: "就快融化",
-    content: "评论内容，纯路人",
+    'id|0-520': 0,
+    nickname: '就快融化',
+    content: '评论内容，纯路人',
     blog: {
-      "id|0-233": 0, // 博客id
-      title: "@ctitle(5,10)",
+      'id|0-233': 0, // 博客id
+      title: '@ctitle(5,10)',
     },
-    createDate: "@natural(1609459200000, " + Date.now() + ")",
-    "avatar|1": [
-      "https://picsum.photos/id/520/200/200",
-      "https://picsum.photos/id/999/200/200",
-      "https://picsum.photos/id/666/200/200",
-      "https://picsum.photos/id/233/200/200",
+    createDate: '@natural(1609459200000, ' + Date.now() + ')',
+    'avatar|1': [
+      'https://picsum.photos/id/520/200/200',
+      'https://picsum.photos/id/999/200/200',
+      'https://picsum.photos/id/666/200/200',
+      'https://picsum.photos/id/233/200/200',
     ],
   },
-});
+})
 
-Mock.mock(/^\/api\/comment(\/.+)+$/, "get", function(options) {
-  const query = qs.parse(options.url);
+Mock.mock(/^\/api\/comment(\/.+)+$/, 'get', function(options) {
+  const query = qs.parse(options.url)
   return Mock.mock({
     code: 0,
-    msg: "",
+    msg: '',
     data: {
       total: 46, //评论总数
       [`rows|${query.limit || 10}`]: [
         //当前页列表数据
         {
-          id: "@guid",
-          nickname: "I坤@integer(10,99)号",
-          content: "评论内容，纯路人：@cparagraph(1, 4)",
+          id: '@guid',
+          nickname: 'I坤@integer(10,99)号',
+          content: '评论内容，纯路人：@cparagraph(1, 4)',
           blog: {
-            "id|0-233": 0, // 博客id
-            title: "@ctitle(5,10)",
+            'id|0-233': 0, // 博客id
+            title: '@ctitle(5,10)',
           },
-          createDate: "@natural(1609459200000, " + Date.now() + ")",
-          "avatar|1": [
-            "https://picsum.photos/id/520/100/100",
-            "https://picsum.photos/id/999/100/100",
-            "https://picsum.photos/id/666/100/100",
-            "https://picsum.photos/id/233/100/100",
+          createDate: '@natural(1609459200000, ' + Date.now() + ')',
+          'avatar|1': [
+            'https://picsum.photos/id/520/100/100',
+            'https://picsum.photos/id/999/100/100',
+            'https://picsum.photos/id/666/100/100',
+            'https://picsum.photos/id/233/100/100',
           ],
         },
       ],
     },
-  });
-});
+  })
+})

@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import Contact from "./Contact";
-import Menu from "./Menu";
-import Avatar from "@/components/Avatar";
-import Icon from "@/components/Icon";
-import imgUrl from "@/assets/404AM.png";
+import Contact from './Contact'
+import Menu from './Menu'
+import Avatar from '@/components/Avatar'
+import Icon from '@/components/Icon'
+import imgUrl from '@/assets/404AM.png'
 
 export default {
   components: {
@@ -33,14 +33,14 @@ export default {
   data() {
     return {
       imgUrl,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/var.less";
-@import "~@/styles/common.less";
+@import '~@/styles/var.less';
+@import '~@/styles/common.less';
 .site-aside-container {
   height: 100%;
   width: 100%;
