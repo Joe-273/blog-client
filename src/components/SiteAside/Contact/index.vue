@@ -6,7 +6,7 @@
           <Icon :type="item.iconType" />
         </div>
         <div v-if="!!item.imgUrl" class="image">
-          <img ref="imgBox" :src="placeHolderImg" :data-realSrc="item.imgUrl" alt="" />
+          <img ref="imgBox" :src="item.imgUrl" alt="" />
         </div>
       </a>
     </li>
@@ -16,56 +16,46 @@
 <script>
 import Icon from '@/components/Icon'
 import placeHolderImg from '@/assets/defaultLoading.gif'
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
       placeHolderImg,
-      itemArray: [
-        {
-          iconType: 'qq',
-          contentText: '1123116289',
-          imgUrl: '',
-          href: '',
-        },
-        {
-          iconType: 'wechat',
-          contentText: 'Joe',
-          imgUrl: '',
-          href: '',
-        },
-        {
-          iconType: 'github',
-          imgUrl: 'https://picsum.photos/210/200',
-          href: 'https://github.com/Joe-273?tab=repositories',
-        },
-        {
-          iconType: 'email',
-          contentText: 'Qihaowei.273@Outlook',
-          imgUrl: 'https://picsum.photos/200/210',
-          href: 'mailto:Qihaowei.273@Outlook.com',
-        },
-      ],
+      itemArray: [],
     }
   },
   components: {
     Icon,
   },
   methods: {
-    loadRealImage() {
-      for (const item of this.$refs.imgBox) {
-        const realSrc = item.dataset.realsrc
-        if (realSrc) item.src = realSrc
-      }
-    },
     handlerClick(e, itemHref) {
       if (!itemHref) e.preventDefault()
     },
   },
-  mounted() {
-    window.addEventListener('load', this.loadRealImage)
-  },
-  beforeDestroy() {
-    window.removeEventListener('load', this.loadRealImage)
+  computed: mapState('setting', ['data']),
+  created() {
+    this.itemArray = [
+      {
+        iconType: 'qq',
+        imgUrl: this.data.qqQrCode,
+        href: '',
+      },
+      {
+        iconType: 'wechat',
+        imgUrl: this.data.weixinQrCode,
+        href: '',
+      },
+      {
+        iconType: 'github',
+        imgUrl: '',
+        href: this.data.github,
+      },
+      {
+        iconType: 'email',
+        imgUrl: '',
+        href: `mailto:${this.data.mail}`,
+      },
+    ]
   },
 }
 </script>
@@ -129,6 +119,7 @@ export default {
       img {
         .abs-center();
         width: 90%;
+        height: 90%;
         object-fit: cover;
         background-color: @white;
         .border-style(6px, @gray);

@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <Layout :showLeft="true">
+  <div id="app" v-loading="loading">
+    <Layout :showLeft="true" v-if="!loading">
       <template #left>
         <div class="left" :class="{ closed: isClosed }">
           <SiteAside @switchAsideBar="switchHandler"></SiteAside>
@@ -17,7 +17,7 @@
 import Layout from '@/components/Layout'
 import SiteAside from '@/components/SiteAside'
 import { RouterView } from 'vue-router'
-
+import { mapState } from 'vuex'
 export default {
   name: 'App',
   components: {
@@ -29,6 +29,7 @@ export default {
       isClosed: false,
     }
   },
+  computed: mapState('setting', ['loading']),
   methods: {
     switchHandler(isClosed) {
       this.isClosed = isClosed

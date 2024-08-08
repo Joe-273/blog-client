@@ -3,14 +3,14 @@
     <div class="main-container">
       <div class="body">
         <div class="avatar">
-          <Avatar :imgUrl="imgUrl" />
-          <p class="nameText">无敌暴龙王的小窝</p>
+          <Avatar :imgUrl="data.avatar" />
+          <p class="nameText">{{ data.siteTitle }}</p>
         </div>
         <Menu />
       </div>
       <div class="footer">
         <Contact />
-        <p>备案号:xxxx</p>
+        <p>{{ data.icp }}</p>
       </div>
     </div>
   </div>
@@ -22,6 +22,7 @@ import Menu from './Menu'
 import Avatar from '@/components/Avatar'
 import Icon from '@/components/Icon'
 import imgUrl from '@/assets/404AM.png'
+import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -35,6 +36,7 @@ export default {
       imgUrl,
     }
   },
+  computed: mapState('setting', ['data']),
 }
 </script>
 
