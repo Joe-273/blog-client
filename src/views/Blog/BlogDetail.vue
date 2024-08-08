@@ -21,6 +21,7 @@ import BlogTOC from './components/BlogTOC'
 import BlogDetailContent from './components/BlogDetailContent'
 import BlogComment from './components/BlogComment'
 import ToTop from '@/components/ToTop'
+import { setTitle } from '@/utils'
 
 export default {
   mixins: [fetchRemoteData({})],
@@ -36,7 +37,9 @@ export default {
       this.$refs.mainContainer.scrollTop = 0
     },
     async fetchData() {
-      return await getBlogDetail(this.$route.params.blogId)
+      const resp = await getBlogDetail(this.$route.params.blogId)
+      setTitle.setRouteTitle(resp.title)
+      return resp
     },
     handleScroll() {
       this.$bus.$emit('mainScroll', this.$refs.mainContainer)

@@ -43,7 +43,7 @@ export default {
 <style lang="less" scoped>
 @import '~@/styles/var.less';
 @import '~@/styles/common.less';
-@r: 50px;
+@r: 40px;
 .to-top-container {
   transition: 0.25s;
   display: flex;
@@ -61,9 +61,9 @@ export default {
   .main {
     width: @r;
     height: @r;
-    border-radius: 50%;
-    border: 1px solid @primary;
-    background-color: @primary;
+    border-radius: 12px;
+    border: 1px solid lighten(@dark, 10%);
+    background-color: lighten(@dark, 10%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,7 +72,7 @@ export default {
     line-height: 1.15;
     font-weight: 700;
     user-select: none;
-    font-size: 28px;
+    font-size: 22px;
     color: @white;
     cursor: pointer;
     opacity: 0.5;

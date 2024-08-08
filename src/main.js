@@ -13,6 +13,9 @@ Vue.directive('loading', vLoading)
 import vLazyLoad from './directives/lazyload'
 Vue.directive('lazyload', vLazyLoad)
 
+import store from './store'
+store.dispatch('setting/fetchData')
+
 // 事件总线
 /**
  * 监听事件：mainScroll
@@ -23,6 +26,7 @@ Vue.directive('lazyload', vLazyLoad)
 Vue.prototype.$bus = new Vue({})
 
 new Vue({
+  store, // 使用仓库
   router, // 在实例中使用路由
   render: (h) => h(App),
 }).$mount('#app')

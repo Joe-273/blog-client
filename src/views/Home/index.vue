@@ -1,11 +1,11 @@
 <template>
-  <div v-loading="isLoading" class="home-container" ref="homeContainer" @wheel="wheelHandler">
-    <ul class="main" :style="{ marginTop }">
+  <div v-loading="loading" class="home-container" ref="homeContainer" @wheel="wheelHandler">
+    <ul class="main" :style="{ marginTop }" v-if="!loading">
       <li v-for="(item, index) in data" :key="item.id" class="item">
         <CarouselImage :item="item" :isReach="isReach(index)" />
       </li>
     </ul>
-    <ul class="indicator">
+    <ul class="indicator" v-if="!loading">
       <li
         @click="jumpTo(index)"
         v-for="(item, index) in data"
@@ -25,12 +25,10 @@
 <script>
 import Icon from '@/components/Icon'
 import CarouselImage from './CarouselImage.vue'
-import { getBanner } from '@/api/banner'
-import fetchRemoteData from '@/mixins/fetchRemoteData.js'
+import { mapState } from 'vuex'
+import loading from '../../directives/loading'
 
 export default {
-  mixins: [fetchRemoteData([])],
-
   components: {
     CarouselImage,
     Icon,
@@ -43,9 +41,6 @@ export default {
     }
   },
   methods: {
-    async fetchData() {
-      return await getBanner()
-    },
     // 跳转banner图
     jumpTo(index) {
       this.currentIndex = index
@@ -75,6 +70,10 @@ export default {
         return index === this.currentIndex
       }
     },
+    ...mapState('banner', ['loading', 'data']),
+  },
+  created() {
+    this.$store.dispatch('banner/fetchData')
   },
   mounted() {
     window.addEventListener('resize', this.resizeHandler)
