@@ -32,7 +32,9 @@ export default {
       return await getComment(this.page, this.limit, this.$route.params.blogId)
     },
     async fetchMore() {
-      if (this.data.rows.length >= this.data.total || this.isLoading) return
+      if (this.data.rows.length >= this.data.total || this.isLoading) {
+        return
+      }
       this.isLoading = true
       const moreData = await getComment(this.page, this.limit, this.$route.params.blogId)
       this.data.rows.push(...moreData.rows)
@@ -50,7 +52,9 @@ export default {
     },
     handleScroll(dom) {
       const difference = Math.abs(dom.scrollHeight - dom.clientHeight - dom.scrollTop)
-      if (difference === 0) this.fetchMore()
+      if (difference === 0) {
+        this.fetchMore()
+      }
     },
   },
   created() {

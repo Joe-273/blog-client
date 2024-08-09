@@ -2,7 +2,7 @@
   <div class="blog-detail-container" v-loading="isLoading">
     <Layout :showRight="true" class="layout" v-if="!isLoading">
       <div class="main" ref="mainContainer">
-        <BlogDetailContent :blogItem="data" />
+        <!-- <BlogDetailContent :blogItem="data" /> -->
         <BlogComment class="commentArea" v-if="data" />
         <ToTop @totop="handleToTop" />
       </div>
@@ -43,6 +43,12 @@ export default {
     },
     handleScroll() {
       this.$bus.$emit('mainScroll', this.$refs.mainContainer)
+    },
+    handleScroll(dom) {
+      const difference = Math.abs(dom.scrollHeight - dom.clientHeight - dom.scrollTop)
+      if (difference === 0) {
+        this.fetchMore()
+      }
     },
   },
   updated() {

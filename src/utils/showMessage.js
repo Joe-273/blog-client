@@ -38,7 +38,7 @@ export default function(options = {}) {
   // 强行渲染
   div.clientHeight
   // 回归正常
-  div.style.opacity = 1
+  div.style.opacity = 0.8
   div.style.transform = `translate(-50%, -50%)`
   setTimeout(() => {
     div.style.opacity = 0
