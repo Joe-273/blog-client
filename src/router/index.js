@@ -4,7 +4,9 @@ import routes from './routes'
 import { setTitle } from '@/utils'
 
 // 静态方法，启动vue-router插件
-Vue.use(VueRouter)
+if (!window.VueRouter) {
+  Vue.use(VueRouter)
+}
 
 // 创建一个路由实例
 const router = new VueRouter({

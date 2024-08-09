@@ -14,7 +14,27 @@
         enabled. Please enable it to continue.</strong
       >
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+      <style>
+        .loading {
+          width: 100px;
+          height: 100px;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          margin-left: -50px;
+          margin-top: -50px;
+        }
+      </style>
+      <img class="loading" src="./image/loading.svg" alt="" />
+    </div>
+    <!-- ref cdn -->
+    <% if(NODE_ENV === 'production') { %>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/2.6.11/vue.min.js"></script>
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/vuex/3.6.2/vuex.min.js"></script>
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue-router/3.4.9/vue-router.min.js"></script>
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/axios/0.26.0/axios.min.js"></script>
+    <% } %>
     <!-- built files will be auto injected -->
   </body>
 </html>

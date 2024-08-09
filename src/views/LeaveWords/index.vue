@@ -16,6 +16,7 @@
 <script>
 import LeaveWordsArea from '@/components/LeaveWordsArea'
 import fetchRemoteData from '@/mixins/fetchRemoteData.js'
+import ToTop from '@/components/ToTop'
 import { getLeaveWords, postLeaveWords } from '@/api/leaveWords'
 
 export default {
@@ -23,6 +24,7 @@ export default {
 
   components: {
     LeaveWordsArea,
+    ToTop,
   },
 
   data() {
@@ -54,7 +56,11 @@ export default {
       this.data.total++
       callback("感谢留言(●'◡'●)") //传递处理完成信号给后代组件
     },
+    handleTotop() {
+      this.$refs.mainContainer.scrollTop = 0
+    },
     handleScroll() {
+      this.$bus.$emit('mainScroll', this.$refs.mainContainer)
       const difference = Math.abs(
         this.$refs.mainContainer.scrollHeight -
           this.$refs.mainContainer.clientHeight -
@@ -75,14 +81,19 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '~@/styles/var.less';
+@import '~@/styles/common.less';
 .leave-words-container {
   width: 100%;
   height: 100%;
   padding: 0 40px;
   overflow-x: hidden;
   overflow-y: scroll;
+  scroll-behavior: smooth;
+  position: relative;
+  .scroll-style();
   .main {
-    padding: 40px 80px;
+    padding: 40px 15%;
   }
 }
 </style>

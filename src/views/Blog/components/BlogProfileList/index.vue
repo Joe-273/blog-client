@@ -57,6 +57,7 @@
         </div>
       </li>
     </ul>
+    <Empty v-if="data.rows.length === 0 && !isLoading" text="一篇博客都找不到哟" />
     <Pager
       v-show="!isLoading"
       v-if="data.total"
@@ -76,11 +77,13 @@ import fetchRemoteData from '@/mixins/fetchRemoteData.js'
 import { getBlogs } from '@/api/blog'
 import { formatDate } from '@/utils'
 import Icon from '@/components/Icon'
+import Empty from '@/components/Empty'
 
 export default {
-  mixins: [fetchRemoteData({})],
+  mixins: [fetchRemoteData({ total: 0, rows: [] })],
   components: {
     Pager,
+    Empty,
     Icon,
   },
   methods: {

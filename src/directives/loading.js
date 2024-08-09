@@ -1,4 +1,5 @@
 import style from '@/directives/loading.module.less'
+import loadingSvg from '@/assets/loading.svg'
 
 function getLoadingElement(el) {
   return el.querySelector('div[data-role=loading]')
@@ -8,8 +9,7 @@ function createLoadingElement() {
   const div = document.createElement('div')
   div.dataset.role = 'loading'
   div.innerHTML = `<div class="${style.center}">
-      <div class="${style.text}">Loading</div>
-      <div class="${style.ring}"></div>
+      <img class='item' src='${loadingSvg}'>
     </div>`
   return div
 }

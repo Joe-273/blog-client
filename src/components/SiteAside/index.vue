@@ -93,7 +93,10 @@ export default {
       color: @lightWords;
       white-space: nowrap;
       font-size: 12px;
-      margin-top: 40px;
+      margin-top: 60px;
+      p {
+        margin: 10px 0;
+      }
     }
   }
 }

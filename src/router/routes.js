@@ -1,16 +1,11 @@
-import Home from '@/views/Home'
-import About from '@/views/About'
-import Blog from '@/views/Blog/Blog.vue'
-import BlogDetail from '@/views/Blog/BlogDetail.vue'
-import LeaveWords from '@/views/LeaveWords'
-import Project from '@/views/Project'
+import NotFound from '@/views/NotFound'
 
 // 路由的匹配规则
 const routes = [
   {
     name: 'Home',
     path: '/',
-    component: Home,
+    component: () => import(/* webpackChunkName:'Home'*/ '@/views/Home'),
     meta: {
       title: '首页',
     },
@@ -18,7 +13,7 @@ const routes = [
   {
     name: 'About',
     path: '/about',
-    component: About,
+    component: () => import(/* webpackChunkName:'About'*/ '@/views/About'),
     meta: {
       title: '关于我',
     },
@@ -26,7 +21,7 @@ const routes = [
   {
     name: 'Blog',
     path: '/blog',
-    component: Blog,
+    component: () => import(/* webpackChunkName:'Blog'*/ '@/views/Blog/Blog.vue'),
     meta: {
       title: '博客',
     },
@@ -34,7 +29,7 @@ const routes = [
   {
     name: 'BlogCategory',
     path: '/blog/cate/:categoryId',
-    component: Blog,
+    component: () => import(/* webpackChunkName:'Blog'*/ '@/views/Blog/Blog.vue'),
     meta: {
       title: '博客',
     },
@@ -42,7 +37,7 @@ const routes = [
   {
     name: 'BlogDetail',
     path: '/blog/detail/:blogId',
-    component: BlogDetail,
+    component: () => import(/* webpackChunkName:'BlogDetail'*/ '@/views/Blog/BlogDetail.vue'),
     meta: {
       title: '博客详情',
     },
@@ -50,7 +45,7 @@ const routes = [
   {
     name: 'LeaveWords',
     path: '/leavewords',
-    component: LeaveWords,
+    component: () => import(/* webpackChunkName:'LeaveWords'*/ '@/views/LeaveWords'),
     meta: {
       title: '留言板',
     },
@@ -58,10 +53,15 @@ const routes = [
   {
     name: 'Project',
     path: '/project',
-    component: Project,
+    component: () => import(/* webpackChunkName:'Project'*/ '@/views/Project'),
     meta: {
       title: '项目&展示',
     },
+  },
+  {
+    name: 'NotFound',
+    path: '*',
+    component: NotFound,
   },
 ]
 export default routes

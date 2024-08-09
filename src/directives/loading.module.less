@@ -7,37 +7,11 @@ div[data-role='loading'] {
 }
 .center {
   .abs-center();
-}
-@size: 60px;
-.ring {
-  width: @size;
-  height: @size;
-  border-radius: 50%;
-  box-shadow: 0 2px 0 lighten(@primary, 10%);
-  background: transparent;
-  animation: Cycle 0.5s linear infinite;
-}
-.text {
-  width: @size;
-  height: @size;
-  color: @gray;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 50%;
-  text-align: center;
-  line-height: @size;
-  font-size: 14px;
-  background: @white;
-  text-shadow: 0 0 15px @gray;
-  // box-shadow: 0 0 5px lighten(@primary, 10%);
-  user-select: none;
-}
-@keyframes Cycle {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
+  width: 80px;
+  height: 80px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 }

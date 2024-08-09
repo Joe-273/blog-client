@@ -2,7 +2,7 @@
   <div class="blog-detail-container" v-loading="isLoading">
     <Layout :showRight="true" class="layout" v-if="!isLoading">
       <div class="main" ref="mainContainer">
-        <!-- <BlogDetailContent :blogItem="data" /> -->
+        <BlogDetailContent :blogItem="data" />
         <BlogComment class="commentArea" v-if="data" />
         <ToTop @totop="handleToTop" />
       </div>
@@ -37,18 +37,17 @@ export default {
       this.$refs.mainContainer.scrollTop = 0
     },
     async fetchData() {
-      const resp = await getBlogDetail(this.$route.params.blogId)
+      let resp = await getBlogDetail(this.$route.params.blogId)
+      resp = null
+      if (!resp) {
+        this.$router.push(`${this.$route.fullPath}/404`)
+        return
+      }
       setTitle.setRouteTitle(resp.title)
       return resp
     },
     handleScroll() {
       this.$bus.$emit('mainScroll', this.$refs.mainContainer)
-    },
-    handleScroll(dom) {
-      const difference = Math.abs(dom.scrollHeight - dom.clientHeight - dom.scrollTop)
-      if (difference === 0) {
-        this.fetchMore()
-      }
     },
   },
   updated() {
@@ -60,7 +59,7 @@ export default {
     }, 50)
   },
   beforeDestroy() {
-    this.$refs.mainContainer.removeEventListener('scroll', this.handleScroll)
+    this.$refs.mainContainer && this.$refs.mainContainer.removeEventListener('scroll', this.handleScroll)
   },
 }
 </script>
@@ -74,7 +73,7 @@ export default {
   width: 100%;
   .main {
     scroll-behavior: smooth;
-    padding: 0 40px;
+    padding: 0 5%;
     position: relative;
     .scroll-style();
     overflow-x: hidden;

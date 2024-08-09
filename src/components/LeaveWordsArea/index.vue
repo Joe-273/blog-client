@@ -7,7 +7,10 @@
     <DataForm v-on="$listeners" />
     <DataList :list="list" />
     <div class="loading" v-loading="isListLoading">
-      {{ getEnd && !isListLoading ? '噢~到底咯O(∩_∩)O~' : '' }}
+      <Empty v-if="list.length === 0 && !isListLoading" text="居然一条评论都没有~" />
+      <span v-else-if="list.length !== 0 && !isListLoading">
+        {{ getEnd ? '噢~到底咯O(∩_∩)O~' : '' }}
+      </span>
     </div>
   </div>
 </template>
@@ -15,10 +18,13 @@
 <script>
 import DataForm from './DataForm.vue'
 import DataList from './DataList.vue'
+import Empty from '@/components/Empty'
+
 export default {
   components: {
     DataForm,
     DataList,
+    Empty,
   },
   props: {
     title: {

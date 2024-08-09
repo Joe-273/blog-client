@@ -39,6 +39,10 @@ Mock.mock(/^\/api\/blog(\?.+)?$/, 'get', function(options) {
         createDate: '@natural(1609459200000, ' + Date.now() + ')',
       })),
     },
+    // data: {
+    //   total: 0,
+    //   rows: [],
+    // },
   })
 })
 

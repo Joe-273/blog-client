@@ -34,7 +34,7 @@ export default {
     this.$refs.mainContainer && this.$refs.mainContainer.addEventListener('scroll', this.handleScroll)
   },
   beforeDestroy() {
-    this.$refs.mainContainer.removeEventListener('scroll', this.handleScroll)
+    this.$refs.mainContainer && this.$refs.mainContainer.removeEventListener('scroll', this.handleScroll)
   },
 }
 </script>
@@ -50,7 +50,7 @@ export default {
     width: 100%;
     overflow: hidden;
     scroll-behavior: smooth;
-    padding: 0 40px;
+    padding: 0 5%;
     .scroll-style();
     overflow: hidden;
     overflow-y: auto;

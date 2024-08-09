@@ -20,6 +20,7 @@
         </div>
       </li>
     </ul>
+    <Empty v-if="data.length === 0 && !loading" text="啥项目都没有哟~" />
     <ToTop @totop="handleTotop" />
   </div>
 </template>
@@ -27,10 +28,12 @@
 <script>
 import { mapState } from 'vuex'
 import ToTop from '@/components/ToTop'
+import Empty from '@/components/Empty'
 
 export default {
   components: {
     ToTop,
+    Empty,
   },
   computed: mapState('project', ['loading', 'data']),
   methods: {
@@ -45,7 +48,6 @@ export default {
     this.$store.dispatch('project/fetchData')
   },
   mounted() {
-    console.log(this.$refs)
     this.$refs.mainContainer && this.$refs.mainContainer.addEventListener('scroll', this.handleScroll)
   },
   beforeDestroy() {
@@ -63,7 +65,7 @@ export default {
   overflow-x: hidden;
   overflow-y: scroll;
   position: relative;
-  padding: 0 40px;
+  padding: 0 5%;
   scroll-behavior: smooth;
   .scroll-style();
   .content {

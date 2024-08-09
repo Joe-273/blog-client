@@ -12,4 +12,5 @@ Mock.mock(/^\/api\/project\/?$/, 'get', {
       thumb: 'https://picsum.photos/id/@natural(500, 1000)/300/200',
     },
   ],
+  // data: [],
 })
