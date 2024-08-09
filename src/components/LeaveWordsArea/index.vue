@@ -6,7 +6,9 @@
     </h3>
     <DataForm v-on="$listeners" />
     <DataList :list="list" />
-    <div class="loading" v-loading="isListLoading">{{ getEnd ? '噢~到底咯O(∩_∩)O~' : '' }}</div>
+    <div class="loading" v-loading="isListLoading">
+      {{ getEnd && !isListLoading ? '噢~到底咯O(∩_∩)O~' : '' }}
+    </div>
   </div>
 </template>
 

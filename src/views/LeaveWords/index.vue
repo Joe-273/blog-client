@@ -1,11 +1,88 @@
 <template>
-  <div>
-    <h1>留言板</h1>
+  <div class="leave-words-container" ref="mainContainer">
+    <div class="main">
+      <LeaveWordsArea
+        :title="'留言板'"
+        :subTitle="`(${data.total})`"
+        :list="data.rows"
+        :isListLoading="isLoading"
+        :getEnd="data.rows.length >= data.total"
+        @submit="handleSubmit"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-export default {}
+import LeaveWordsArea from '@/components/LeaveWordsArea'
+import fetchRemoteData from '@/mixins/fetchRemoteData.js'
+import { getLeaveWords, postLeaveWords } from '@/api/leaveWords'
+
+export default {
+  mixins: [fetchRemoteData({ total: 0, rows: [] })],
+
+  components: {
+    LeaveWordsArea,
+  },
+
+  data() {
+    return {
+      limit: 10,
+      page: 1,
+    }
+  },
+
+  methods: {
+    async fetchData() {
+      return await getLeaveWords(this.page, this.limit)
+    },
+    async fetchMore() {
+      if (this.data.rows.length >= this.data.total || this.isLoading) {
+        return
+      }
+      this.isLoading = true
+      const moreData = await getLeaveWords(this.page, this.limit)
+      this.data.rows.push(...moreData.rows)
+      this.page++
+      this.isLoading = false
+    },
+    async handleSubmit(formData, callback) {
+      const resp = await postLeaveWords({
+        ...formData,
+      })
+      this.data.rows.unshift(resp)
+      this.data.total++
+      callback("感谢留言(●'◡'●)") //传递处理完成信号给后代组件
+    },
+    handleScroll() {
+      const difference = Math.abs(
+        this.$refs.mainContainer.scrollHeight -
+          this.$refs.mainContainer.clientHeight -
+          this.$refs.mainContainer.scrollTop
+      )
+      if (difference === 0) {
+        this.fetchMore()
+      }
+    },
+  },
+  updated() {
+    this.$refs.mainContainer && this.$refs.mainContainer.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy() {
+    this.$refs.mainContainer.removeEventListener('scroll', this.handleScroll)
+  },
+}
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.leave-words-container {
+  width: 100%;
+  height: 100%;
+  padding: 0 40px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  .main {
+    padding: 40px 80px;
+  }
+}
+</style>
