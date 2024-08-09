@@ -37,8 +37,7 @@ export default {
       this.$refs.mainContainer.scrollTop = 0
     },
     async fetchData() {
-      let resp = await getBlogDetail(this.$route.params.blogId)
-      resp = null
+      const resp = await getBlogDetail(this.$route.params.blogId)
       if (!resp) {
         this.$router.push(`${this.$route.fullPath}/404`)
         return
