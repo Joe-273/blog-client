@@ -1,4 +1,4 @@
-import './mock' // 模拟数据
+// import './mock' // 模拟数据
 import Vue from 'vue'
 import App from './App.vue'
 import './styles/global.less' // 全局样式

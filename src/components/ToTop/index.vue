@@ -1,8 +1,7 @@
 <template>
   <div class="to-top-container" :class="{ show }">
     <div @click="handleClick" class="main" :style="{ 'margin-right': right + 'px' }">
-      <span>_</span>
-      <span>↑</span>
+      <span>▲</span>
     </div>
   </div>
 </template>
@@ -43,7 +42,7 @@ export default {
 <style lang="less" scoped>
 @import '~@/styles/var.less';
 @import '~@/styles/common.less';
-@r: 40px;
+@r:45px;
 .to-top-container {
   transition: 0.25s;
   display: flex;
@@ -61,25 +60,24 @@ export default {
   .main {
     width: @r;
     height: @r;
-    border-radius: 12px;
-    border: 1px solid lighten(@dark, 10%);
-    background-color: lighten(@dark, 10%);
+    border-radius: 50%;
+    border: 1px solid lighten(@dark,10%);
+    background-color: lighten(@dark,10%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: end;
-    padding-bottom: 5px;
-    line-height: 1.15;
-    font-weight: 700;
+    justify-content: center;
     user-select: none;
-    font-size: 22px;
-    color: @white;
+    font-size: 16px;
+    color: @gray;
     cursor: pointer;
-    opacity: 0.5;
+    opacity: 0.35;
     transition: 0.25s;
     z-index: 999;
     &:hover {
       opacity: 1;
+      color: @white;
+
     }
   }
 }

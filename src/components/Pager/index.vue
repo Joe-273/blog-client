@@ -53,10 +53,23 @@ export default {
     },
     PageArray() {
       let min = this.current - Math.floor(this.visibleNumber / 2)
-      min < 1 && (min = 1)
-      min > this.totalPageNumber - (this.visibleNumber - 1) &&
-        (min = this.totalPageNumber - (this.visibleNumber - 1))
-      let pageArray = new Array(this.visibleNumber).fill(0).map(() => min++)
+      let offsetNumber = this.totalPageNumber - (this.visibleNumber - 1)
+      // 两种边界情况
+      if(min<1){
+        min = 1
+      }else if(min>offsetNumber){
+        min = offsetNumber
+      }
+      
+      // 判断数组长度
+      let arrayLength;
+      if(this.totalPageNumber > this.visibleNumber){
+        arrayLength=this.visibleNumber
+      }else{
+        arrayLength=this.totalPageNumber
+      }
+
+      let pageArray = new Array(arrayLength).fill(0).map(() => min++)
       return pageArray
     },
   },
