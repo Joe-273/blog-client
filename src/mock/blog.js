@@ -47,7 +47,7 @@ Mock.mock(/^\/api\/blog(\?.+)?$/, 'get', function(options) {
 })
 
 // 单个博客详情
-Mock.mock(/^\/api\/blog\/detail\/[^\/]+$/, 'get', {
+Mock.mock(/^\/api\/blog\/[^\/]+$/, 'get', {
   code: 0,
   msg: '',
   data: {

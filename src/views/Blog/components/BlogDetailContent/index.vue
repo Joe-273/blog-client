@@ -14,15 +14,12 @@
         <Icon class="icon" type="comment" />
         {{ blogItem.commentNumber }}
       </a>
-      <RouterLink
-        :to="{
-          name: 'BlogCategory',
-          params: {
-            categoryId: blogItem.category.id,
-          },
-        }"
-        class="flexText"
-      >
+      <RouterLink :to="{
+        name: 'BlogCategory',
+        params: {
+          categoryId: blogItem.category.id,
+        },
+      }" class="flexText">
         <Icon class="icon" type="classify" />
         {{ blogItem.category.name }}
       </RouterLink>
@@ -55,14 +52,18 @@ export default {
 <style lang="less" scoped>
 @import '~@/styles/var.less';
 @import '~@/styles/common.less';
+
 .blog-detail-content-container {
   padding-top: 40px;
+
   h1 {
     margin: 10px 0 15px 0;
   }
+
   .htmlContent {
     margin-top: 15px;
   }
+
   .aside {
     padding-bottom: 15px;
     border-bottom: 1px solid @gray;
@@ -70,10 +71,12 @@ export default {
     font-size: 14px;
     color: @lightWords;
     display: flex;
+
     .flexText {
       margin-right: 25px;
       display: flex;
       align-items: center;
+
       .icon {
         .icon-style();
       }
