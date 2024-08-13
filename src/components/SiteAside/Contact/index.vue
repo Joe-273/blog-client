@@ -1,7 +1,7 @@
 <template>
   <ul class="contact-container">
     <li class="item" v-for="item in itemArray" :key="item.iconType">
-      <a @click="handlerClick($event, item.href)" :href="item.href" target="_blank" class="aLink">
+      <a :title="item.iconType.toUpperCase() + '：' + item.description" @click="handlerClick($event, item.href)" :href="item.href" target="_blank" class="aLink">
         <div class="icon">
           <Icon :type="item.iconType" />
         </div>
@@ -39,21 +39,25 @@ export default {
         iconType: 'qq',
         imgUrl: this.data.qqQrCode,
         href: '',
+        description: this.data.qq
       },
       {
         iconType: 'wechat',
         imgUrl: this.data.weixinQrCode,
         href: '',
+        description: this.data.weixin
       },
       {
         iconType: 'github',
         imgUrl: '',
         href: this.data.github,
+        description: this.data.githubName
       },
       {
         iconType: 'email',
         imgUrl: '',
         href: `mailto:${this.data.mail}`,
+        description: this.data.mail
       },
     ]
   },
@@ -77,7 +81,7 @@ export default {
         @d: 36px;
         .flex-center();
         .border-style(50%, @lightWords);
-        transition: 0.25s;
+        transition: border-color 0.25s;
         width: @d;
         height: @d;
         font-size: 22px;

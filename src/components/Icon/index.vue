@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '//at.alicdn.com/t/c/font_4629566_fdtc2r4lszd.css';
+@import '//at.alicdn.com/t/c/font_4629566_82lobv484zx.css';
 .iconfont {
   font-size: inherit;
   color: inherit;

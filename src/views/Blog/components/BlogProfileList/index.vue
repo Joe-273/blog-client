@@ -32,11 +32,11 @@
             </span>
             <span class="flexText">
               <Icon class="icon" type="pageView" />
-              {{ item.commentNumber }}
+              {{ item.scanNumber }}
             </span>
             <span class="flexText">
               <Icon class="icon" type="comment" />
-              {{ item.scanNumber }}
+              {{ item.commentNumber }}
             </span>
             <RouterLink
               class="flexText"
