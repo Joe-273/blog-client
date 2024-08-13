@@ -10,8 +10,13 @@
             <a :href="item.url ? item.url : `javascript:void(0)`">
               <h2>{{ item.name }}</h2>
             </a>
-            <a :href="item.github" target="_blank">
-              <h3>Github</h3>
+            <a
+              title="跳转到Github"
+              class="github"
+              :href="item.github ? item.github : `javascript:void(0)`"
+              target="_blank"
+            >
+              <Icon type="github" />
             </a>
           </div>
           <div class="desc">
@@ -28,11 +33,13 @@
 <script>
 import { mapState } from 'vuex'
 import ToTop from '@/components/ToTop'
+import Icon from '@/components/Icon'
 import Empty from '@/components/Empty'
 
 export default {
   components: {
     ToTop,
+    Icon,
     Empty,
   },
   computed: mapState('project', ['loading', 'data']),
@@ -59,6 +66,7 @@ export default {
 <style lang="less" scoped>
 @import '~@/styles/var.less';
 @import '~@/styles/common.less';
+
 .project-conatiner {
   width: 100%;
   height: 100%;
@@ -68,8 +76,10 @@ export default {
   padding: 0 5%;
   scroll-behavior: smooth;
   .scroll-style();
+
   .content {
     padding-top: 40px;
+
     .item {
       display: flex;
       margin: 15px;
@@ -77,10 +87,12 @@ export default {
       transition: 0.25s;
       transform: scale(1);
       .border-style(8px, @gray);
+
       &:hover {
         box-shadow: 0 0 25px -15px @dark;
         transform: scale(1.02);
       }
+
       .thumb {
         .border-style(8px, @gray);
         flex: 0 0 auto;
@@ -88,46 +100,65 @@ export default {
         height: 180px;
         width: 230px;
         transition: 0.25s;
+
         img {
           width: 100%;
           height: 100%;
           object-fit: cover;
         }
       }
+
       .main {
         flex: 1 1 auto;
         overflow: hidden;
         margin-left: 15px;
         height: 100%;
+
         .link {
           display: flex;
           margin-bottom: 15px;
-          h2 {
-            line-height: 40px;
-            white-space: nowrap;
+          align-items: center;
+          justify-content: space-between;
+
+          a {
             margin-right: 15px;
+
+            h2 {
+              line-height: 40px;
+              white-space: nowrap;
+            }
           }
-          h3 {
-            font-size: 16px;
-            line-height: 40px;
-            padding-top: 5px;
+
+          .github {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
             color: @lightWords;
-            letter-spacing: 1px;
+            .border-style(50%, @lightWords);
+
+            &:hover {
+              border-color: @primary;
+              color: @primary;
+            }
           }
         }
-        .desc {
-          width: 100%;
-          white-space: normal;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          color: darken(@words, 15%);
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 4; /* 控制显示的行数 */
-          line-clamp: 5;
-          text-indent: 2em;
-          line-height: 22px;
-        }
+      }
+
+      .desc {
+        width: 100%;
+        white-space: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: darken(@words, 15%);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        /* 控制显示的行数 */
+        line-clamp: 5;
+        text-indent: 2em;
+        line-height: 22px;
       }
     }
   }

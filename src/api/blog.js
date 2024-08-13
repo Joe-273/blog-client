@@ -24,7 +24,7 @@ export async function getBlogCatrgories() {
  * 获取单个博客
  */
 export async function getBlogDetail(id) {
-  return await request.get(`/api/blog/detail/${id}`)
+  return await request.get(`/api/blog/${id}`)
 }
 
 /**

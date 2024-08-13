@@ -46,9 +46,15 @@ export default {
         blogId: this.$route.params.blogId,
         ...formData,
       })
-      this.data.rows.unshift(resp)
-      this.data.total++
-      callback('评论成功(●ˇ∀ˇ●)') //传递处理完成信号给后代组件
+      if(resp){
+        this.data.rows.unshift(resp)
+        this.data.total++
+        callback('评论成功(●ˇ∀ˇ●)') //传递处理完成信号给后代组件
+        return
+      }
+      callback() // 评论失败
+
+      
     },
     handleScroll(dom) {
       const difference = Math.abs(dom.scrollHeight - dom.clientHeight - dom.scrollTop)

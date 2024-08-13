@@ -21,13 +21,13 @@
         <input
           @focus="handleFocus($event, 'Input')"
           @blur="handleBlur($event, 'Input')"
-          v-model="formData.nickName"
+          v-model="formData.nickname"
           maxlength="10"
           placeholder="请填写一个昵称"
           type="text"
         />
-        <span class="error">{{ error.nickName }}</span>
-        <span class="tip">{{ formData.nickName.length }}/10</span>
+        <span class="error">{{ error.nickname }}</span>
+        <span class="tip">{{ formData.nickname.length }}/10</span>
       </div>
       <div @click.prevent="handleSubmit" class="formArea submit " :class="{ disabled: isSubmiting }">
         <button>{{ isSubmiting ? '发布中...' : '发布' }}</button>
@@ -43,11 +43,11 @@ export default {
       isTextAreaFocus: false,
       isInputFocus: false,
       formData: {
-        nickName: '',
+        nickname: '',
         content: '',
       },
       error: {
-        nickName: '',
+        nickname: '',
         content: '',
       },
       isSubmiting: false,
@@ -69,23 +69,27 @@ export default {
     },
     // 提交表单函数
     handleSubmit(e) {
-      this.error.nickName = this.formData.nickName ? '' : '要不先填一个昵称吧？'
+      this.error.nickname = this.formData.nickname ? '' : '要不先填一个昵称吧？'
       this.error.content = this.formData.content ? '' : '你在评论的时候忘记评论内容啦！'
-      if (!this.formData.nickName || !this.formData.content) {
+      if (!this.formData.nickname || !this.formData.content) {
         return
       }
       // 提交表单
       this.isSubmiting = true
-      this.$emit('submit', this.formData, (message) => {
+      const data = {...this.formData}
+      this.$emit('submit', data, (message) => {
         this.isSubmiting = false
-        this.formData.nickName = ''
+        this.formData.nickname = ''
         this.formData.content = ''
-        this.$showMessage({
-          content: message,
-          type: 'success',
-          container: this.$refs.formContainer,
-          duration: 1000,
-        })
+        if(message){
+          // 评论成功,有成功提示
+          this.$showMessage({
+            content: message,
+            type: 'success',
+            container: this.$refs.formContainer,
+            duration: 1000,
+          })
+        }
       })
     },
     handleInput(e) {

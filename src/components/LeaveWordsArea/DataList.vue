@@ -1,6 +1,6 @@
 <template>
   <ul class="datalist-container">
-    <li v-for="item of list" :key="item.id" class="commentItem">
+    <li v-if="item" v-for="item of list" :key="item.id" class="commentItem">
       <div class="avatar">
         <Avatar :imgUrl="item.avatar" :imgSize="56" />
       </div>

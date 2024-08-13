@@ -112,7 +112,6 @@ export default {
     resize(event) {
       if (!this.isResizing) return
       if (this.timerId) return
-      console.log('object')
       this.timerId = setTimeout(() => {
         const dx = event.clientX - this.startX
         if (this.activeResizer === 'left') {
