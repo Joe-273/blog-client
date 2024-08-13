@@ -62,8 +62,8 @@
       v-show="!isLoading"
       v-if="data.total"
       @pageChanged="pageChangedHandler"
-      :limit="routeInfo.limit"
-      :current="routeInfo.page"
+      :limit="+routeInfo.limit"
+      :current="+routeInfo.page"
       :total="data.total"
       :visibleNumber="7"
       class="pager"
@@ -86,10 +86,18 @@ export default {
     Empty,
     Icon,
   },
+  data(){
+    return{
+      originData:null
+    }
+  },
   methods: {
     formatDate,
     async fetchData() {
-      return await getBlogs(this.routeInfo.page, this.routeInfo.limit, this.routeInfo.categoryId)
+      const resp =  await getBlogs(this.routeInfo.page, this.routeInfo.limit, this.routeInfo.categoryId)
+      // 将第一次请求到的所有的文章储存起来，为了后面文章分类的时候重复使用，而不需要重复请求
+      this.originData = {...resp}
+      return resp
     },
     pageChangedHandler(newPage) {
       const query = {
@@ -117,17 +125,27 @@ export default {
   watch: {
     $route: {
       async handler() {
-        this.isLoading = true
-        this.data = await this.fetchData()
+        // 因为分类获取的文章只能获取到所有文章，所以不需要重复请求
+        // const resp = await this.fetchData()
+        // this.data = resp
+
+        if(this.routeInfo.categoryId !== -1){
+          // 因为服务器分类获取文章的api出现问题了，所以这里写下替代方案
+        // 当切换类别的时候,直接从第一次储存的originData中筛选符合条件的文章
+          this.data.rows = this.originData.rows.filter(i => i.category.id === this.routeInfo.categoryId)
+        }else{
+          this.data.rows = this.originData.rows
+        }
+
         this.isLoading = false
       },
     },
   },
   computed: {
     routeInfo() {
-      const categoryId = +this.$route.params.categoryId || -1
-      const page = +this.$route.query.page || 1
-      const limit = +this.$route.query.limit || 10
+      const categoryId = this.$route.params.categoryId || -1
+      const page = this.$route.query.page || 1
+      const limit = this.$route.query.limit || 10
       return {
         categoryId,
         page,
