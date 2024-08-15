@@ -6,6 +6,7 @@
       :list="data.rows"
       :isListLoading="isLoading"
       :getEnd="data.rows.length >= data.total"
+      emptyMessage="一条评论都没有发现哦"
       @submit="handleSubmit"
     />
   </div>

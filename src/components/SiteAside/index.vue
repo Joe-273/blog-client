@@ -21,7 +21,6 @@ import Contact from './Contact'
 import Menu from './Menu'
 import Avatar from '@/components/Avatar'
 import Icon from '@/components/Icon'
-import imgUrl from '@/assets/404AM.png'
 import { mapState } from 'vuex'
 
 export default {
@@ -30,11 +29,6 @@ export default {
     Contact,
     Avatar,
     Icon,
-  },
-  data() {
-    return {
-      imgUrl,
-    }
   },
   computed: mapState('setting', ['data']),
 }

@@ -1,7 +1,13 @@
 <template>
   <ul class="contact-container">
     <li class="item" v-for="item in itemArray" :key="item.iconType">
-      <a :title="item.iconType.toUpperCase() + '：' + item.description" @click="handlerClick($event, item.href)" :href="item.href" target="_blank" class="aLink">
+      <a
+        :title="item.iconType.toUpperCase() + '：' + item.description"
+        @click="handlerClick($event, item.href)"
+        :href="item.href"
+        target="_blank"
+        class="aLink"
+      >
         <div class="icon">
           <Icon :type="item.iconType" />
         </div>
@@ -37,27 +43,27 @@ export default {
     this.itemArray = [
       {
         iconType: 'qq',
-        imgUrl: this.data.qqQrCode,
+        imgUrl: this.data.qqQrCode || '',
         href: '',
-        description: this.data.qq
+        description: this.data.qq || '',
       },
       {
         iconType: 'wechat',
-        imgUrl: this.data.weixinQrCode,
+        imgUrl: this.data.weixinQrCode || '',
         href: '',
-        description: this.data.weixin
+        description: this.data.weixin || '',
       },
       {
         iconType: 'github',
         imgUrl: '',
-        href: this.data.github,
-        description: this.data.githubName
+        href: this.data.github || '',
+        description: this.data.githubName || '',
       },
       {
         iconType: 'email',
         imgUrl: '',
-        href: `mailto:${this.data.mail}`,
-        description: this.data.mail
+        href: `mailto:${this.data.mail || ''}`,
+        description: this.data.mail || '',
       },
     ]
   },

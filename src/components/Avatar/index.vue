@@ -1,12 +1,13 @@
 <template>
-  <img
+  <div
     class="avatar-container"
-    :src="imgUrl"
     :style="{
-      width: imgSize + 'px',
-      height: imgSize + 'px',
+      width: imgSize + 5 + 'px',
+      height: imgSize + 5 + 'px',
     }"
-  />
+  >
+    <img :src="imgUrl" />
+  </div>
 </template>
 
 <script>
@@ -27,7 +28,14 @@ export default {
 <style lang="less" scoped>
 @import '~@/styles/var.less';
 .avatar-container {
-  object-fit: cover;
+  overflow: hidden;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  img {
+    object-fit: cover;
+  }
 }
 </style>

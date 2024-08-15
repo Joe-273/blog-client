@@ -7,6 +7,7 @@
         :list="data.rows"
         :isListLoading="isLoading"
         :getEnd="data.rows.length >= data.total"
+        emptyMessage="留言板没留言也很正常的，是吧？"
         @submit="handleSubmit"
       />
     </div>

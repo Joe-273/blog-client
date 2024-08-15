@@ -7,7 +7,7 @@
     <DataForm v-on="$listeners" />
     <DataList :list="list" />
     <div class="loading" v-loading="isListLoading">
-      <Empty v-if="list.length === 0 && !isListLoading" text="居然一条评论都没有~" />
+      <Empty v-if="list.length === 0 && !isListLoading" :text="emptyMessage" />
       <span v-else-if="list.length !== 0 && !isListLoading">
         {{ getEnd ? '噢~到底咯O(∩_∩)O~' : '' }}
       </span>
@@ -52,6 +52,11 @@ export default {
       required: false,
       default: false,
     },
+    emptyMessage: {
+      type: String,
+      required: false,
+      default: "空空如也"
+    }
   },
 }
 </script>
