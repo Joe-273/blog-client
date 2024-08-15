@@ -22,7 +22,6 @@
 import Avatar from '@/components/Avatar'
 import Icon from '@/components/Icon'
 import { formatDate } from '@/utils/'
-// import imgurl from "@/assets/404AM.png";
 export default {
   components: {
     Avatar,

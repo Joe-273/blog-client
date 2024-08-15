@@ -1,21 +1,15 @@
 <template>
   <div class="test-container">
-    <Icon :imgUrl="url" />
+    <Icon imgUrl="https://picsum.photos/150/150" />
   </div>
 </template>
 
 <script>
 import '@/styles/global.less'
 import Icon from './'
-import url from '@/assets/404AM.png'
 export default {
   components: {
     Icon,
-  },
-  data() {
-    return {
-      url,
-    }
   },
 }
 </script>
