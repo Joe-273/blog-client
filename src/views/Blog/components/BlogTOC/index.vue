@@ -48,8 +48,19 @@ export default {
     },
     selectedHandler(item) {
       location.hash = ''
-      location.hash = item.anchor
+      // 浏览器会自动将中文和一些特殊字符编码后使用,然后解码后渲染出来
+      // 所以可以锚链接跳转先编码,以防止跳转失败
+      location.hash = encodeURIComponent(item.anchor)
     },
+    remapToc(toc){
+      // 由于toc中anchor属性有可能会缺失特殊符号,所以这里重新映射anchor
+      // 例如: objectCounts-> objectcounts -> 编码
+      return toc.map(i=>({
+          ...i,
+          anchor: i.name.toLowerCase(),
+          children: this.remapToc(i.children)
+      }))
+    }
   },
   computed: {
     // 将原来的toc数组的每一项以及子项映射一个isSelected属性
@@ -57,7 +68,7 @@ export default {
       const getTOC = (toc = []) => {
         return toc.map((i) => ({
           ...i,
-          isSelected: i.anchor === this.activeAnchor,
+          isSelected: encodeURIComponent(i.anchor) === this.activeAnchor,
           children: getTOC(i.children),
         }))
       }
@@ -68,15 +79,18 @@ export default {
       const doms = []
       const addToDoms = (toc) => {
         for (const i of toc) {
-          doms.push(document.getElementById(i.anchor))
+          const encodeAnchor = encodeURIComponent(i.anchor)
+          doms.push(document.getElementById(encodeAnchor))
           i.children && i.children.length && addToDoms(i.children)
         }
+        console.log(doms);
         return doms
       }
       return addToDoms(this.toc)
     },
   },
   created() {
+    this.toc = this.remapToc(this.toc)
     this.setSelectThrottle = throttle(this.setSelect, 50)
     this.$bus.$on('mainScroll', this.setSelectThrottle)
   },

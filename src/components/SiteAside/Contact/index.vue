@@ -43,27 +43,27 @@ export default {
     this.itemArray = [
       {
         iconType: 'qq',
-        imgUrl: this.data.qqQrCode || '',
+        imgUrl: this.data?.qqQrCode ?? '',
         href: '',
-        description: this.data.qq || '',
+        description: this.data?.qq ?? 'No QQ available',
       },
       {
         iconType: 'wechat',
-        imgUrl: this.data.weixinQrCode || '',
+        imgUrl: this.data?.weixinQrCode ?? '',
         href: '',
-        description: this.data.weixin || '',
+        description: this.data?.weixin ?? 'No WeChat available',
       },
       {
         iconType: 'github',
         imgUrl: '',
-        href: this.data.github || '',
-        description: this.data.githubName || '',
+        href: this.data?.github ?? '#',
+        description: this.data?.githubName ?? 'No GitHub name available',
       },
       {
         iconType: 'email',
         imgUrl: '',
-        href: `mailto:${this.data.mail || ''}`,
-        description: this.data.mail || '',
+        href: `mailto:${this.data?.mail ?? ''}`,
+        description: this.data?.mail ?? 'No email available',
       },
     ]
   },

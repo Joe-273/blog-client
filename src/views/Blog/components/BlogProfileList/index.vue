@@ -1,7 +1,7 @@
 <template>
   <div v-loading="isLoading" class="blog-profile-list-container">
     <ul v-if="!isLoading">
-      <li v-for="item in data.rows" :key="item.id">
+      <li  v-for="item in data.rows" :key="item.id">
         <div class="thumb" v-if="item.thumb">
           <RouterLink
             :to="{
@@ -43,12 +43,12 @@
               :to="{
                 name: 'BlogCategory',
                 params: {
-                  categoryId: item.category.id,
+                  categoryId: item.category ? item.category.id : -1,
                 },
               }"
             >
               <Icon class="icon" type="classify" />
-              {{ item.category.name }}
+              {{ item.category ? item.category.name : '无分类'}}
             </RouterLink>
           </div>
           <div class="desc">
@@ -94,10 +94,10 @@ export default {
   methods: {
     formatDate,
     async fetchData() {
-      const resp =  await getBlogs(this.routeInfo.page, this.routeInfo.limit, this.routeInfo.categoryId)
-      // 将第一次请求到的所有的文章储存起来，为了后面文章分类的时候重复使用，而不需要重复请求
-      this.originData = {...resp}
-      return resp
+        const resp =  await getBlogs(this.routeInfo.page, this.routeInfo.limit, this.routeInfo.categoryId)
+        // 将第一次请求到的所有的文章储存起来，为了后面文章分类的时候重复使用，而不需要重复请求
+        this.originData = {...resp}
+        return resp
     },
     pageChangedHandler(newPage) {
       const query = {
@@ -132,7 +132,12 @@ export default {
         if(this.routeInfo.categoryId !== -1){
           // 因为服务器分类获取文章的api出现问题了，所以这里写下替代方案
         // 当切换类别的时候,直接从第一次储存的originData中筛选符合条件的文章
-          this.data.rows = this.originData.rows.filter(i => i.category.id === this.routeInfo.categoryId)
+          this.data.rows = this.originData.rows.filter(i => {
+            if(i.category === null){
+              return false
+            }
+            return i.category.id === this.routeInfo.categoryId
+          })
         }else{
           this.data.rows = this.originData.rows
         }

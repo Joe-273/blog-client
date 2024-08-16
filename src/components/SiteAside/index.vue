@@ -3,14 +3,14 @@
     <div class="main-container">
       <div class="body">
         <div class="avatar">
-          <Avatar :imgUrl="data.avatar" />
-          <p class="nameText">{{ data.siteTitle }}</p>
+          <Avatar :imgUrl="data ? data.avatar : ''" />
+          <p class="nameText">{{ data && data.siteTitle }}</p>
         </div>
         <Menu />
       </div>
       <div class="footer">
         <Contact />
-        <p>{{ data.icp }}</p>
+        <p>{{ data && data.icp }}</p>
       </div>
     </div>
   </div>

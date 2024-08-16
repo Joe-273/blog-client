@@ -50,12 +50,16 @@ export default {
       this.isLoading = false
     },
     async handleSubmit(formData, callback) {
-      const resp = await postLeaveWords({
-        ...formData,
-      })
-      this.data.rows.unshift(resp)
-      this.data.total++
-      callback("感谢留言(●'◡'●)") //传递处理完成信号给后代组件
+      try{
+        const resp = await postLeaveWords({
+          ...formData,
+        })
+        this.data.rows.unshift(resp)
+        this.data.total++
+        callback("感谢留言(●'◡'●)") //传递处理完成信号给后代组件
+      }catch{
+        callback("出错了o(TヘTo)","error")
+      }
     },
     handleTotop() {
       this.$refs.mainContainer.scrollTop = 0

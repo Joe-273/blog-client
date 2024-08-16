@@ -26,7 +26,7 @@
 import Icon from '@/components/Icon'
 import CarouselImage from './CarouselImage.vue'
 import { mapState } from 'vuex'
-import loading from '../../directives/loading'
+// import loading from '../../directives/loading'
 
 export default {
   components: {

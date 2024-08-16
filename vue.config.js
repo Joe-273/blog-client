@@ -5,7 +5,7 @@ module.exports = {
       '/api': {
         target: 'http://localhost:7001',
       },
-      'static':{
+      'static': {
         target: 'http://localhost:7001',
       }
     },

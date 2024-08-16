@@ -1,8 +1,8 @@
 <template>
   <div class="blog-catrgory-container" v-loading="isLoading">
-    <div class="main">
+    <div class="main" v-if="!isLoading && data">
       <h2>博客类别</h2>
-      <RightList v-if="!isLoading" :data="list" @selected="selectedHandler" class="rightList" />
+      <RightList :data="list" @selected="selectedHandler" class="rightList" />
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     async fetchData() {
-      return await getBlogCatrgories()
+        return await getBlogCatrgories()
     },
     selectedHandler(item) {
       const query = {

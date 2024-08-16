@@ -53,7 +53,7 @@ export default {
         callback('评论成功(●ˇ∀ˇ●)') //传递处理完成信号给后代组件
         return
       }
-      callback() // 评论失败
+      callback("出错了o(TヘTo)","error") // 评论失败
 
       
     },

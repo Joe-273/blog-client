@@ -77,7 +77,7 @@ export default {
       // 提交表单
       this.isSubmiting = true
       const data = {...this.formData}
-      this.$emit('submit', data, (message) => {
+      this.$emit('submit', data, (message,type = 'success') => {
         this.isSubmiting = false
         this.formData.nickname = ''
         this.formData.content = ''
@@ -85,7 +85,7 @@ export default {
           // 评论成功,有成功提示
           this.$showMessage({
             content: message,
-            type: 'success',
+            type,
             container: this.$refs.formContainer,
             duration: 1000,
           })

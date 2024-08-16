@@ -36,6 +36,7 @@ export default {
   background-color: rgba(255, 255, 255, 0.1);
   img {
     object-fit: cover;
+    width: 100%;
   }
 }
 </style>
