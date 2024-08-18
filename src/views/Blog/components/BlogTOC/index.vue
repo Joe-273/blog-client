@@ -52,22 +52,16 @@ export default {
       // 所以可以锚链接跳转先编码,以防止跳转失败
       location.hash = encodeURIComponent(item.anchor)
     },
-    remapToc(toc){
-      // 由于toc中anchor属性有可能会缺失特殊符号,所以这里重新映射anchor
-      // 例如: objectCounts-> objectcounts -> 编码
-      return toc.map(i=>({
-          ...i,
-          anchor: i.name.toLowerCase(),
-          children: this.remapToc(i.children)
-      }))
-    }
   },
   computed: {
     // 将原来的toc数组的每一项以及子项映射一个isSelected属性
+    // 由于toc中anchor属性有可能会缺失特殊符号,所以这里重新映射anchor
+    // 例如: objectCounts-> objectcounts -> 编码
     tocWithSelect() {
       const getTOC = (toc = []) => {
         return toc.map((i) => ({
           ...i,
+          anchor: i.name.toLowerCase(),
           isSelected: encodeURIComponent(i.anchor) === this.activeAnchor,
           children: getTOC(i.children),
         }))
@@ -83,14 +77,12 @@ export default {
           doms.push(document.getElementById(encodeAnchor))
           i.children && i.children.length && addToDoms(i.children)
         }
-        console.log(doms);
         return doms
       }
-      return addToDoms(this.toc)
+      return addToDoms(this.tocWithSelect)
     },
   },
   created() {
-    this.toc = this.remapToc(this.toc)
     this.setSelectThrottle = throttle(this.setSelect, 50)
     this.$bus.$on('mainScroll', this.setSelectThrottle)
   },

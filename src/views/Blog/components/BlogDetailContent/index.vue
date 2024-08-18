@@ -14,14 +14,17 @@
         <Icon class="icon" type="comment" />
         {{ blogItem.commentNumber }}
       </a>
-      <RouterLink :to="{
-        name: 'BlogCategory',
-        params: {
-          categoryId: blogItem.category.id,
-        },
-      }" class="flexText">
+      <RouterLink
+        :to="{
+          name: 'BlogCategory',
+          params: {
+            categoryId: blogItem.category ? blogItem.category.id : -1,
+          },
+        }"
+        class="flexText"
+      >
         <Icon class="icon" type="classify" />
-        {{ blogItem.category.name }}
+        {{ blogItem.category ? blogItem.category.name : '无分类' }}
       </RouterLink>
     </div>
     <div v-html="blogItem.htmlContent" class="htmlContent markdown-body"></div>
@@ -30,9 +33,10 @@
 
 <script>
 import { formatDate } from '@/utils'
-import 'highlight.js/styles/github.css'
 import '@/styles/markdown.css'
 import Icon from '@/components/Icon'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/github.css' // 样式
 export default {
   components: {
     Icon,
@@ -46,6 +50,13 @@ export default {
   methods: {
     formatDate,
   },
+  mounted() {
+    this.$nextTick(() => {
+      document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightElement(block)
+      })
+    })
+  },
 }
 </script>
 
@@ -58,6 +69,8 @@ export default {
 
   h1 {
     margin: 10px 0 15px 0;
+    font-weight: 1200;
+    font-size: 48px;
   }
 
   .htmlContent {

@@ -82,6 +82,7 @@ export default {
   font-size: 14px;
   .item {
     margin: 0 10px;
+    list-style: none;
     .aLink {
       .icon {
         @d: 36px;

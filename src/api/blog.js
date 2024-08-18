@@ -3,12 +3,13 @@ import request from './request'
 /**
  * 获取博客列表数据
  */
-export async function getBlogs(page = 1, limit = 10, categoryId = -1) {
+export async function getBlogs(page = 1, limit = 10, categoryId = -1, keyword = '') {
   return await request.get('/api/blog', {
     params: {
       page,
       limit,
       categoryId,
+      keyword
     },
   })
 }

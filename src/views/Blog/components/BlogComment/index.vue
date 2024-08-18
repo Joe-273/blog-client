@@ -43,19 +43,22 @@ export default {
       this.isLoading = false
     },
     async handleSubmit(formData, callback) {
-      const resp = await postComment({
-        blogId: this.$route.params.blogId,
-        ...formData,
-      })
-      if(resp){
+      try {
+        const resp = await postComment({
+          blogId: this.$route.params.blogId,
+          ...formData,
+        })
+
+        if (resp === null) {
+          callback() //操作频繁
+          return
+        }
         this.data.rows.unshift(resp)
         this.data.total++
         callback('评论成功(●ˇ∀ˇ●)') //传递处理完成信号给后代组件
-        return
+      } catch {
+        callback('出错了o(TヘTo)', 'error') // 一般是请求失败
       }
-      callback("出错了o(TヘTo)","error") // 评论失败
-
-      
     },
     handleScroll(dom) {
       const difference = Math.abs(dom.scrollHeight - dom.clientHeight - dom.scrollTop)

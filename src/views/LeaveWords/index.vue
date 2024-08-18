@@ -50,15 +50,19 @@ export default {
       this.isLoading = false
     },
     async handleSubmit(formData, callback) {
-      try{
+      try {
         const resp = await postLeaveWords({
           ...formData,
         })
+        if (resp === null) {
+          callback()
+          return
+        }
         this.data.rows.unshift(resp)
         this.data.total++
         callback("感谢留言(●'◡'●)") //传递处理完成信号给后代组件
-      }catch{
-        callback("出错了o(TヘTo)","error")
+      } catch {
+        callback('出错了o(TヘTo)', 'error')
       }
     },
     handleTotop() {

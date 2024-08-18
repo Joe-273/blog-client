@@ -7,6 +7,7 @@ if (process.env.NODE_ENV === 'production') {
       vuex: 'Vuex',
       'vue-router': 'VueRouter',
       axios: 'axios',
+      'highlight.js': 'hljs',
     },
   }
 } else {

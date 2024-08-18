@@ -18,12 +18,15 @@ export default {
   },
   methods: {
     async fetchData() {
-        return await getBlogCatrgories()
+      return await getBlogCatrgories()
     },
     selectedHandler(item) {
       const query = {
         page: 1,
         limit: this.limit,
+      }
+      if (this.keyword) {
+        query.keyword = this.keyword
       }
       if (item.id === -1) {
         // 如果点击的分类为全部
@@ -44,6 +47,9 @@ export default {
     },
   },
   computed: {
+    keyword() {
+      return this.$route.query.keyword !== undefined ? this.$route.query.keyword : ''
+    },
     categoryId() {
       return this.$route.params.categoryId !== undefined ? this.$route.params.categoryId : -1
     },

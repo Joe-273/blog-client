@@ -137,6 +137,7 @@ export default {
     right: 30px;
     transform: translateY(-50%);
     li {
+      list-style:none ;
       cursor: pointer;
       width: 12px;
       height: 12px;

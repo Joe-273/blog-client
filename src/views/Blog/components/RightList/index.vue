@@ -37,6 +37,7 @@ export default {
 @import '~@/styles/var.less';
 @import '~@/styles/common.less';
 .right-list-container {
+  overflow: hidden;
   list-style: none;
   padding: 0;
   line-height: 40px;
