@@ -31,6 +31,14 @@ export default {
       currentStr: '',
     }
   },
+  created() {
+    const fromRefresh = sessionStorage.getItem('fromRefresh')
+    if (fromRefresh) {
+      sessionStorage.removeItem('fromRefresh')
+      console.log('Redirecting to Home')
+      this.$router.replace('/') // 刷新时重定向到首页
+    }
+  },
   methods: {
     handleClick(e) {
       const str = e.target.innerText

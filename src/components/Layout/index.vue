@@ -30,7 +30,7 @@
       class="resizeBar rightBar"
       :class="{ closed: isRightClosed }"
     >
-      <div @click="openAsideBar('right')" :class="{}" class="switch">
+      <div @click="openAsideBar('right')" class="switch">
         <Icon class="icon" type="arrowLeft" />
       </div>
     </div>
@@ -48,6 +48,7 @@
 
 <script>
 import Icon from '@/components/Icon'
+import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -62,6 +63,13 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  computed: mapState('setting', ['data']),
+  created() {
+    if (this.data === null) {
+      this.leftWidth = 0
+      this.rightWidth = 0
+    }
   },
   data() {
     return {

@@ -76,12 +76,12 @@ export default {
       }
       // 提交表单
       this.isSubmiting = true
-      const data = {...this.formData}
-      this.$emit('submit', data, (message,type = 'success') => {
+      const data = { ...this.formData }
+      this.$emit('submit', data, (message, type = 'success') => {
         this.isSubmiting = false
         this.formData.nickname = ''
         this.formData.content = ''
-        if(message){
+        if (message) {
           // 评论成功,有成功提示
           this.$showMessage({
             content: message,
@@ -139,17 +139,18 @@ export default {
       width: fit-content;
       padding-left: @gap;
       padding-right: @gap;
-      border: none;
+      border: 1px solid lighten(@primary, 5%);
       background-color: lighten(@primary, 5%);
-      color: lighten(@gray, 15%);
+      color: @white;
       user-select: none;
       &:hover {
         background-color: @primary;
         color: @white;
       }
       &.disabled {
-        background-color: lighten(@primary, 15%);
-        color: lighten(@gray, 10%);
+        border: 1px solid lighten(@primary, 10%);
+        background-color: lighten(@primary, 5%);
+        color: lighten(@gray, 15%);
         cursor: not-allowed;
       }
     }
@@ -161,8 +162,8 @@ export default {
     width: 100%;
     padding: 10px 15px;
     border: 1px solid lighten(@lightWords, 10%);
-    background-color: lighten(@lightWords, 30%);
-    border-radius: 8px;
+    background-color: lighten(@lightWords, 35%);
+    border-radius: 6px;
     color: @lightWords;
     .error {
       position: absolute;

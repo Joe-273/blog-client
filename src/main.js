@@ -25,6 +25,12 @@ store.dispatch('setting/fetchData')
  */
 Vue.prototype.$bus = new Vue({})
 
+// 监听刷新
+window.addEventListener('beforeunload', () => {
+  sessionStorage.setItem('fromRefresh', true);
+});
+
+
 new Vue({
   store, // 使用仓库
   router, // 在实例中使用路由

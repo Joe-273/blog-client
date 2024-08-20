@@ -241,17 +241,17 @@ export default {
       padding-left: @gap;
       padding-right: @gap;
       margin-left: 15px;
-      border: none;
+      border: 1px solid lighten(@primary, 5%);
       background-color: lighten(@primary, 5%);
-      color: lighten(@gray, 15%);
+      color: @white;
       user-select: none;
       &:hover {
         background-color: @primary;
-        color: @white;
       }
       &.disabled {
+        border: 1px solid lighten(@primary, 10%);
         background-color: lighten(@primary, 15%);
-        color: lighten(@gray, 10%);
+        color: lighten(@gray, 15%);
         cursor: not-allowed;
       }
     }
@@ -263,8 +263,8 @@ export default {
     width: 100%;
     padding: 10px 15px;
     border: 1px solid lighten(@lightWords, 10%);
-    background-color: lighten(@lightWords, 30%);
-    border-radius: 8px;
+    background-color: lighten(@lightWords, 35%);
+    border-radius: 6px;
     color: @lightWords;
     .error {
       position: absolute;
@@ -360,7 +360,6 @@ export default {
             }
           }
         }
-
         .desc {
           width: 100%;
           white-space: pre;
